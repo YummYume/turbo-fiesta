@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class UserFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const FIXTURE_RANGE = 300;
+    public const FIXTURE_RANGE = 50;
 
     public const REFERENCE_IDENTIFIER = 'user_';
 
@@ -59,7 +59,7 @@ final class UserFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($user);
             $this->addReference(self::REFERENCE_IDENTIFIER.$i, $user);
 
-            if (($i % 25) === 0) {
+            if (($i % 10) === 0) {
                 $manager->flush();
                 $manager->clear();
             }

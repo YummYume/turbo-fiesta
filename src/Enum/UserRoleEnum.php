@@ -10,6 +10,7 @@ enum UserRoleEnum: string
 
     case SuperAdmin = 'ROLE_SUPER_ADMIN';
     case Admin = 'ROLE_ADMIN';
+    case Member = 'ROLE_MEMBER';
     case User = 'ROLE_USER';
     case AllowedToSwitch = 'ROLE_ALLOWED_TO_SWITCH';
 }
