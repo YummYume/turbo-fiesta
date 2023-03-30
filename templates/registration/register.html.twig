@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ "page.register.title"|trans }}
+{% endblock %}
+
+{% block description %}
+    {{ "page.register.description"|trans }}
+{% endblock %}
+
+{% block main_title %}
+    {{ "page.register.title"|trans }}
+{% endblock %}
+
+{% block main_body %}
+    <div class="mx-auto flex max-w-xs grow flex-col">
+        {% for flash_error in app.flashes("verify_email_error") %}
+            <div role="alert">
+                {{ flash_error }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.profile.username) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+        {{ component("button", { content: "common.register"|trans, submit: true }) }}
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

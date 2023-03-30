@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block meta %}
+    <meta name="robots" content="noindex,nofollow" />
+{% endblock %}
+
+{% trans_default_domain "admin" %}
+
+{% block title %}
+    {{ "page.admin.title"|trans }}
+{% endblock %}
+
+{% block description %}
+    {{ "page.admin.description"|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags("admin") }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags("admin") }}
+{% endblock %}

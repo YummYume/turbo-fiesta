@@ -1,0 +1,95 @@
+version: '3.9'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/ci/nginx/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./public:/app/public
+    ports:
+      - 80:80
+    depends_on:
+      php:
+        condition: service_healthy
+    container_name: nginx
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/ci/php/Dockerfile
+    restart: unless-stopped
+    stdin_open: true
+    container_name: php
+    volumes:
+      - ./public:/app/public
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+      redis:
+        condition: service_started
+    healthcheck:
+      test: [ "CMD", "php", "-v" ]
+      timeout: 30s
+      interval: 2s
+      retries: 30
+
+  db:
+    image: mariadb:10.10.2
+    restart: unless-stopped
+    container_name: db
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD:?err}"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 30s
+      interval: 2s
+      retries: 30
+
+  mailcatcher:
+    image: schickling/mailcatcher:latest
+    ports:
+      - "1080:1080"
+    container_name: mailcatcher
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+
+  redis:
+    image: redis:7.0-alpine
+    restart: unless-stopped
+    command: "redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_AUTH:?err}"
+    container_name: redis
+    volumes:
+      - ./data/cache/redis:/data
+
+  mercure:
+    image: dunglas/mercure
+    restart: unless-stopped
+    environment:
+      # Uncomment the following line to disable HTTPS
+      SERVER_NAME: ":3000"
+      MERCURE_PUBLISHER_JWT_KEY: "${MERCURE_JWT_SECRET:?err}"
+      MERCURE_SUBSCRIBER_JWT_KEY: "${MERCURE_JWT_SECRET:?err}"
+      MERCURE_EXTRA_DIRECTIVES: |
+        cors_origins http://localhost
+        use_forwarded_headers "1"
+    # Uncomment the following line to enable the development mode
+    command: /usr/bin/caddy run --config /etc/caddy/Caddyfile.dev
+    container_name: su-mercure
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.0
+    container_name: meilisearch
+    restart: unless-stopped
+    ports:
+      - 7700:7700
+    environment:
+      MEILI_MASTER_KEY: "${MEILISEARCH_MASTER_KEY:?err}"

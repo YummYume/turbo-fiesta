@@ -1,0 +1,7 @@
+{% if sortable == 'sortable' %}
+  {{ component('icon', { icon: 'arrow_up_down' }) }}
+{% elseif sortable == 'asc' %}
+  {{ component('icon', { icon: 'arrow_down' }) }}
+{% elseif sortable == 'desc' %}
+  {{ component('icon', { icon: 'arrow_up' }) }}
+{% endif %}

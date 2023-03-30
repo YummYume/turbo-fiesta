@@ -1,0 +1,37 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ "page.homepage.title"|trans }}
+{% endblock %}
+
+{% block description %}
+    {{ "page.homepage.description"|trans }}
+{% endblock %}
+
+{% block main_title %}
+    {{ "page.homepage.title"|trans }}
+{% endblock %}
+
+{% block main_body %}
+    <section class="flex grow items-center justify-center gap-8">
+        {% if app.user %}
+            {% if is_granted(constant("App\\Enum\\UserRoleEnum::Admin").value) %}
+                <a href="{{ path("admin_homepage") }}">{{ component("button", { content: "common.admin"|trans }) }}</a>
+            {% endif %}
+            <a href="{{ path("security_logout") }}">{{ component("button", { content: "common.logout"|trans }) }}</a>
+        {% else %}
+            <a href="{{ path("security_login") }}">{{ component("button", { content: "page.login.title"|trans }) }}</a>
+            <a href="{{ path("app_register") }}">{{ component("button", { content: "common.register"|trans }) }}</a>
+        {% endif %}
+    </section>
+
+    {{ form_start(form) }}
+    {{ form_row(form.editor) }}
+    <button type="submit">Submit</button>
+    {{ form_end(form) }}
+
+    <div {{ stimulus_controller("editor-parser") }} data-editor-parser-data-value="{{ form.editor.vars.data }}" class="prose my-4">
+        <div class="cdx-loader min-h-[300px]" data-editor-parser-target="loading"></div>
+        <div class="prose" data-editor-parser-target="content"></div>
+    </div>
+{% endblock %}

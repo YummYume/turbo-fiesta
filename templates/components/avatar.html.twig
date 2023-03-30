@@ -1,0 +1,28 @@
+{% set hasPicture = user.profile.picture.fileName|default(null) %}
+
+{% if user %}
+    <div
+        {% if id %}id="{{ id }}"{% endif %}
+        class="mx-auto overflow-hidden rounded-full w-fit"
+        {% if id and permanent %}data-turbo-permanent{% endif %}
+    >
+        {% if hasPicture %}
+            {{ component("image", {
+                src: vich_uploader_asset(user.profile.picture, "file"),
+                filter: small ? "avatar_small" : "avatar",
+                alt: "user.profile.picture"|trans({ username: user.profile.username }),
+                width: small ? 32 : 208,
+                height: small ? 32 : 208
+            }) }}
+        {% else %}
+            <span
+                aria-label="{{ "user.profile.picture"|trans({ username: user.profile.username }) }}"
+                class="select-none {{ small ? "text-base" : "text-6xl" }}"
+            >
+                {{ user.profile.username|u.truncate(1)|upper }}
+            </span>
+        {% endif %}
+    </div>
+{% else %}
+    {{ component('icon', { icon: 'user' }) }}
+{% endif %}

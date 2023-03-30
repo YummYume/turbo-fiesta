@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ "page.show_profile.title"|trans({ username: profile.username }) }}
+{% endblock %}
+
+{% block description %}
+    {{ "page.show_profile.description"|trans({ username: profile.username }) }}
+{% endblock %}
+
+{% block main_title %}
+    {{ "page.show_profile.title"|trans({ username: profile.username }) }}
+{% endblock %}
+
+{% block main_body %}
+    <div class="flex h-40 rounded-xl shadow-xl">
+        <figure class="flex items-center min-w-[12.5rem]">
+            {{ component("avatar", { user: profile.user, small: false }) }}
+        </figure>
+        <div class="p-8">
+            <h2 class="">
+                {{ profile.username }}
+            </h2>
+            <p>
+                {{ profile.description|default("") }}
+            </p>
+        </div>
+    </div>
+{% endblock %}
