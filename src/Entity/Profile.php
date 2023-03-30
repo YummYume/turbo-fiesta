@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Traits\BlameableTrait;
 use App\Entity\Traits\TimestampableTrait;
 use App\Repository\ProfileRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -60,6 +62,18 @@ class Profile
     #[Assert\Valid]
     #[Groups('searchable')]
     private ?ProfilePicture $picture = null;
+
+    #[ORM\OneToMany(mappedBy: 'profile', targetEntity: Message::class, orphanRemoval: true)]
+    private Collection $messages;
+
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'profiles')]
+    private Collection $categories;
+
+    public function __construct()
+    {
+        $this->messages = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?Uuid
     {
@@ -130,5 +144,71 @@ class Profile
     public function isIndexable(): bool
     {
         return $this->user?->isVerified();
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getProfile() === $this) {
+                $message->setProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function hasUnreadMessage(): bool
+    {
+        /** @var Message $message */
+        foreach ($this->messages as $message) {
+            if (!$message->isViewed()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

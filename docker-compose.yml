@@ -14,7 +14,7 @@ services:
     depends_on:
       php:
         condition: service_healthy
-    container_name: nginx
+    container_name: tf-nginx
 
   php:
     build:
@@ -27,7 +27,7 @@ services:
       - ./docker/dev/php/overrides.ini:/usr/local/etc/php/conf.d/overrides.ini
       - ./docker/dev/php/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
       - ./docker/dev/php/logs/supervisor:/var/log/supervisor
-    container_name: php
+    container_name: tf-php
     depends_on:
       db:
         condition: service_healthy
@@ -57,12 +57,12 @@ services:
     depends_on:
       php:
         condition: service_healthy
-    container_name: encore
+    container_name: tf-encore
 
   db:
     image: mariadb:10.10.2
     restart: unless-stopped
-    container_name: db
+    container_name: tf-db
     volumes:
       - ./data/mysql:/var/lib/mysql
     environment:
@@ -76,7 +76,7 @@ services:
   phpmyadmin:
     image: phpmyadmin
     restart: unless-stopped
-    container_name: phpmyadmin
+    container_name: tf-phpmyadmin
     ports:
       - 8080:80
     depends_on:
@@ -91,12 +91,12 @@ services:
     image: schickling/mailcatcher:latest
     ports:
       - "1080:1080"
-    container_name: mailcatcher
+    container_name: tf-mailcatcher
 
   rabbitmq:
     image: rabbitmq:3-management
     restart: unless-stopped
-    container_name: rabbitmq
+    container_name: tf-rabbitmq
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       timeout: 30s
@@ -109,7 +109,7 @@ services:
     image: redis:7.0-alpine
     restart: unless-stopped
     command: "redis-server --save 20 1 --loglevel warning --maxmemory 100mb --maxmemory-policy allkeys-lru --requirepass ${REDIS_AUTH:?err}"
-    container_name: redis
+    container_name: tf-redis
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
       timeout: 30s
@@ -119,7 +119,7 @@ services:
       - ./data/cache/redis:/data
 
   redis-commander:
-    container_name: redis-commander
+    container_name: tf-redis-commander
     hostname: redis-commander
     image: rediscommander/redis-commander:latest
     restart: unless-stopped
@@ -143,14 +143,14 @@ services:
         use_forwarded_headers "1"
     # Uncomment the following line to enable the development mode
     command: /usr/bin/caddy run --config /etc/caddy/Caddyfile.dev
-    container_name: mercure
+    container_name: tf-mercure
     volumes:
       - ./data/mercure/data:/data
       - ./data/mercure/config:/config
 
   meilisearch:
     image: getmeili/meilisearch:v1.0
-    container_name: meilisearch
+    container_name: tf-meilisearch
     restart: unless-stopped
     ports:
       - 7700:7700

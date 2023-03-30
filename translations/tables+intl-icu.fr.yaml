@@ -10,6 +10,7 @@ user.roles: Rôles
 user.description: Description
 user.picture: Image
 user.role.role_super_admin: Super administrateur
-user.role.role_admin: Administrateur
+user.role.role_admin: Employé
+user.role.role_member: Membre
 user.role.role_allowed_to_switch: Autorisé à changer
 user.role.role_user: Utilisateur
