@@ -40,7 +40,7 @@ content.title.max_length: The title must contain up to { limit } characters.
 content.categories.min_count: Please select at least { limit } category.
 
 ## Category
-category.name.unique: This category already exist.
+category.name.unique: This category already exists.
 category.name.not_blank: Please enter a name.
 category.name.min_length: The name must contain at least { limit } characters.
 category.name.max_length: The name must contain up to { limit } characters.
