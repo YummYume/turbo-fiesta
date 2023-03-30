@@ -16,74 +16,74 @@
 
 {% block main_body %}
     <div class="relative overflow-x-auto w-full">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "common.id"|trans }}
                     </th>
                     <td class="px-6 py-4">
                         {{ user.id }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "user.email"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
                         {{ user.email }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "user.roles"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
                         {{ user.roles ? user.roles|map(role => "user.role.#{role|lower}"|trans({}, "tables"))|join(", ") }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "user.verified"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
                         {{ ("common." ~ (user.verified ? "yes" : "no"))|trans }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "user.username"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
                         {{ user.profile.username }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "user.description"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
                         {{ user.profile.description }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "user.picture"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
                         {{ component("avatar", { user, small: false }) }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "common.created_at"|trans }}
                     </th>
                     <td class="px-6 py-4">
                         {{ user.createdAt ? user.createdAt|format_datetime : "" }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "common.updated_at"|trans }}
                     </th>
                     <td class="px-6 py-4">
@@ -91,8 +91,8 @@
                         {{ updatedAt ? updatedAt|format_datetime : "" }}
                     </td>
                 </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "common.created_by"|trans }}
                     </th>
                     <td class="px-6 py-4">
@@ -103,8 +103,8 @@
                         {% endif %}
                     </td>
                 </tr>
-                <tr class="bg-white dark:bg-gray-800">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-neutral-100 dark:bg-neutral-800">
+                    <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-neutral-100">
                         {{ "common.updated_by"|trans }}
                     </th>
                     <td class="px-6 py-4">

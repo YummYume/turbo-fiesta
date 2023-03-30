@@ -1,8 +1,8 @@
 {% trans_default_domain "tables" %}
 
 <div class="relative overflow-x-auto w-full">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
+        <thead class="text-xs text-neutral-700 uppercase bg-neutral-50 dark:bg-neutral-700 dark:text-neutral-400">
             <tr>
                 {% for key, col in config.cols %}
                     <th scope="col" class="px-6 py-3">
@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             {% for value in config.pagination %}
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     {% for key, col in config.cols %}
                         {% if col.queryKey is defined %}
                             {{ component(col.type, { config: { item: value, col, value: get_property(value, key) } }) }}
@@ -42,7 +42,7 @@
                     {% endfor %}
                 </tr>
             {% else %}
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <td class="text-center px-6 py-4" colspan="{{ config.cols|length }}">
                         {{ "common.empty"|trans }}
                     </td>
