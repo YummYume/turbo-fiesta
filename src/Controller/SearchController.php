@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Content;
 use App\Entity\Profile;
 use App\Enum\SearchTypeEnum;
 use Meilisearch\Bundle\SearchService;
@@ -9,12 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/search')]
 final class SearchController extends AbstractController
 {
     #[Route('/', name: 'app_search', methods: ['GET'])]
-    public function globalSearch(Request $request, SearchService $searchService): Response
+    public function globalSearch(Request $request, SearchService $searchService, TranslatorInterface $translator): Response
     {
         $query = trim($request->get('q', ''));
         $page = (int) $request->get('p', 1);
@@ -27,6 +29,15 @@ final class SearchController extends AbstractController
                 'descProperty' => 'description',
                 'slugProperty' => ['slug' => 'slug'],
                 'route' => 'app_profile_show',
+                'routeParam' => ['slug'],
+            ],
+            SearchTypeEnum::Contents => [
+                'class' => Content::class,
+                'nameProperty' => 'title',
+                'descProperty' => 'type',
+                'descCallback' => fn (string $type): string => $translator->trans('content.type.'.$type),
+                'slugProperty' => ['slug' => 'slug'],
+                'route' => 'app_content_show',
                 'routeParam' => ['slug'],
             ],
             default => [
@@ -43,7 +54,7 @@ final class SearchController extends AbstractController
             ...SearchTypeEnum::getSearchOptions($type),
             'hitsPerPage' => 10,
             'page' => $page,
-            'highlightPreTag' => '<em class="bg-secondary-200 dark:bg-secondary-800">',
+            'highlightPreTag' => '<em class="bg-secondary-400">',
         ]) : null;
 
         return $this->render('search/index.html.twig', [

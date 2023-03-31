@@ -26,7 +26,7 @@ final class ContentController extends AbstractController
     ) {
     }
 
-    #[Route('/', name: 'admin_content', methods: ['GET', 'POST'])]
+    #[Route('/index', name: 'admin_content', methods: ['GET', 'POST'])]
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $pagination = $paginator->paginate(
@@ -92,7 +92,7 @@ final class ContentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'admin_content_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'admin_content_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Content $content): Response
     {
         $form = $this->createForm(ContentType::class, $content)->handleRequest($request);
@@ -126,7 +126,7 @@ final class ContentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_content_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'admin_content_delete', methods: ['POST'])]
     public function delete(Request $request, Content $content): Response
     {
         if ($this->isCsrfTokenValid('delete-'.$content->getId()->toBase32(), $request->request->get('_token'))) {
@@ -140,7 +140,7 @@ final class ContentController extends AbstractController
         return $this->redirectToRoute('admin_content', status: Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/send-notification', name: 'admin_content_send_notification', methods: ['POST'])]
+    #[Route('/send-notification/{id}', name: 'admin_content_send_notification', methods: ['POST'])]
     public function sendValidationEmail(Request $request, Content $content, MessageManager $messageManager): Response
     {
         if ($this->isCsrfTokenValid('publish-'.$content->getId()->toBase32(), $request->request->get('_token'))) {
@@ -165,11 +165,13 @@ final class ContentController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('admin_content_edit', ['id' => $content->getId()->toBase32()], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_content_edit', [
+            'id' => $content->getId()->toBase32(),
+        ], Response::HTTP_SEE_OTHER);
     }
 
     #[Route(
-        '/{id}/published',
+        '/published/{id}',
         name: 'admin_content_publish',
         methods: ['POST'],
         condition: ('"'.TurboBundle::STREAM_FORMAT.'" === request.getPreferredFormat()')

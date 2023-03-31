@@ -32,13 +32,13 @@ final class ContentController extends AbstractController
     #[IsGranted(ContentVoter::CREATE, statusCode: 403)]
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-		/** @var User */
-		$user = $this->getUser();
+        /** @var User */
+        $user = $this->getUser();
 
         $pagination = $paginator->paginate(
             $this->contentRepository->createQueryBuilder('c')
-			->setParameter('user', $user)
-			->where('c.createdBy = :user'),
+            ->setParameter('user', $user)
+            ->where('c.createdBy = :user'),
             $request->query->getInt('page', 1),
             5
         );
@@ -101,6 +101,15 @@ final class ContentController extends AbstractController
         ]);
     }
 
+    #[Route('/{slug}', name: 'app_content_show', methods: ['GET', 'POST'])]
+    #[IsGranted(ContentVoter::VIEW, 'content')]
+    public function show(Content $content): Response
+    {
+        return $this->render('content/show.html.twig', [
+            'content' => $content,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'content_edit', methods: ['GET', 'POST'])]
     #[IsGranted(ContentVoter::EDIT, subject: 'content', statusCode: 403)]
     public function edit(Request $request, Content $content): Response
@@ -136,7 +145,7 @@ final class ContentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'content_delete', methods: ['POST'])]
+    #[Route('/{id}/', name: 'content_delete', methods: ['POST'])]
     #[IsGranted(ContentVoter::DELETE, subject: 'content', statusCode: 403)]
     public function delete(Request $request, Content $content): Response
     {

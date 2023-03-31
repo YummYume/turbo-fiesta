@@ -43,7 +43,11 @@ class ContentVoter extends Voter
      */
     private function canView(Content $subject): bool
     {
-        return $subject->isPublished() && $this->security->isGranted($subject->getVisibility()->value);
+        if (!$subject->isPublished()) {
+            return false;
+        }
+
+        return ContentVisibilityEnum::Public === $subject->getVisibility() || $this->security->isGranted($subject->getVisibility()->value);
     }
 
     /**

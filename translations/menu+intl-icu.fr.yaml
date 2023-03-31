@@ -2,6 +2,8 @@
 back_office.home: Accueil
 back_office.users: Utilisateurs
 back_office.contents: Contenus
+back_office.categories: Catégories
 
 # Global search
 global_search.profiles: Profils
+global_search.contents: Contenu public

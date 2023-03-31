@@ -8,7 +8,7 @@
             </div>
             <input
                 aria-label="{{ "global_search.search"|trans }}"
-                class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-secondary-500 focus:border-secondary-500 block w-full pl-10 p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-neutral-100 dark:focus:ring-secondary-500 dark:focus:border-secondary-500"
+                class="border sm:text-sm rounded-lg block w-full pl-10 p-2.5"
                 data-model="debounce(200)|query"
                 name="q"
                 placeholder="{{ "global_search.search"|trans }}..."
@@ -32,10 +32,22 @@
                                         class="text-lg transition-all max-w-fit"
                                         href="{{ path(config.route, {}|merge(config.routeParam|reduce((acc, curr) => acc|merge({ (curr): formatted[config.slugProperty[curr]] }), {}))) }}"
                                     >
-                                        {{ formatted[config.nameProperty]|sanitize_html("app.highlight_sanitizer") }}
+                                        {% set nameDef = formatted[config.nameProperty] %}
+
+                                        {% if config.nameCallback is defined %}
+                                            {% set nameDef = table_parse_option(config.nameCallback, nameDef) %}
+                                        {% endif %}
+
+                                        {{ nameDef|sanitize_html("app.highlight_sanitizer") }}
                                     </a>
                                     <p>
-                                        {{ (formatted[config.descProperty] ?? "")|sanitize_html("app.highlight_sanitizer") }}
+                                        {% set desc = formatted[config.descProperty] ?? "" %}
+
+                                        {% if config.descCallback is defined %}
+                                            {% set desc = table_parse_option(config.descCallback, desc) %}
+                                        {% endif %}
+
+                                        {{ desc|sanitize_html("app.highlight_sanitizer") }}
                                     </p>
                                 </div>
                             {% endfor %}

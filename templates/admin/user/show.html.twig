@@ -71,7 +71,9 @@
                         {{ "user.picture"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ component("avatar", { user, small: false }) }}
+                        <div class="w-fit">
+                            {{ component("avatar", { user, small: false }) }}
+                        </div>
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">

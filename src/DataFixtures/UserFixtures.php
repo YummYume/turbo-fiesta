@@ -51,8 +51,8 @@ final class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setDescription($faker->paragraph(5))
             ;
             $user = (new User())
-                ->setEmail($faker->unique()->safeEmail())
-                ->setPlainPassword($faker->password(8))
+                ->setEmail("email-$i@jaji.com")
+                ->setPlainPassword('xxx')
                 ->setVerified(true)
                 ->setProfile($profile)
             ;

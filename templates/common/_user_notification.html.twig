@@ -10,7 +10,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token('read-all-' ~ app.user.id) }}" />
         </form>
         <button
-            class="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative"
+            class="p-2 mr-1 rounded-lg hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-neutral-700 focus:ring-4 focus:ring-neutral-300 dark:focus:ring-neutral-600 relative"
             data-dropdown-target="trigger"
             type="button"
         >
@@ -23,12 +23,16 @@
             </div>
         </button>
         <div
-            class="hidden overflow-y-auto overflow-x-hidden z-50 my-4 w-96 max-w-full text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 h-96"
+            class="hidden overflow-y-auto overflow-x-hidden z-50 my-4 w-96 max-w-full text-base list-none bg-white rounded divide-y divide-neutral-100 shadow-lg dark:divide-neutral-600 dark:bg-neutral-800 h-96 relative"
             data-dropdown-target="dropdown"
         >
-            <div class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <p class="block py-2 px-4 text-base font-medium text-center text-neutral-700 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-400">
                 {{ 'common.notifications'|trans }}
-            </div>
+            </p>
+            <form class="absolute right-1 top-[0.4rem] max-w-[7.5rem] border-none" action="{{ path('app_message_dismiss_all') }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token('dismiss-all-' ~ app.user.id) }}" />
+                <button class="text-xs text-right" type="submit">{{ 'common.dismiss_all'|trans }}</button>
+            </form>
             <div id="profile-{{ app.user.profile.id }}-messages" class="flex flex-col-reverse">
                 {% for message in app.user.profile.messages %}
                     {{ component("message", { message }) }}

@@ -8,13 +8,12 @@
     <section>
         <div class="mx-auto flex flex-col items-center px-6 py-8 lg:py-0">
             <a href="#" class="mb-6 flex items-center justify-center text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
-                <img class="mr-2 h-8 w-8" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
-                Flowbite
+                <img src="{{ asset('logo.png') }}" alt="logo">
             </a>
             <div class="w-full rounded-lg bg-neutral-100 shadow dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:max-w-md md:mt-0 xl:p-0">
                 <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-900 dark:text-neutral-100 md:text-2xl">
-                        Sign in to your account
+                        {{ 'common.login'|trans }}
                     </h1>
                     <form method="post" class="space-y-4 md:space-y-6">
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token("authenticate") }}" />
@@ -31,7 +30,7 @@
                                 value="{{ last_username }}"
                                 name="_email"
                                 id="inputEmail"
-                                class="block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-neutral-900 focus:border-secondary-600 focus:ring-secondary-600 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-100 dark:placeholder-neutral-400 dark:focus:border-secondary-500 dark:focus:ring-secondary-500 sm:text-sm"
+                                class="block w-full rounded-lg border p-2.5 sm:text-sm"
                                 autocomplete="email"
                                 required
                                 autofocus />
@@ -42,7 +41,7 @@
                                 <input type="password"
                                     autocomplete="current-password"
                                     data-password-visibility-target="input"
-                                    class="block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-neutral-900 focus:border-secondary-600 focus:ring-secondary-600 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-100 dark:placeholder-neutral-400 dark:focus:border-secondary-500 dark:focus:ring-secondary-500 sm:text-sm"
+                                    class="block w-full rounded-lg border p-2.5 sm:text-sm"
                                     id="inputPassword"
                                     name="_password"
                                     placeholder="••••••••"
@@ -62,7 +61,7 @@
                                 <label class="flex h-5 cursor-pointer items-center">
                                     <input type="checkbox"
                                         name="_remember_me"
-                                        class="focus:ring-3 h-4 w-4 cursor-pointer rounded border border-neutral-300 bg-neutral-50 focus:ring-secondary-300 dark:border-neutral-600 dark:bg-neutral-700 dark:ring-offset-neutral-800 dark:focus:ring-secondary-600" />
+                                        class="focus:ring-3 h-4 w-4 cursor-pointer rounded border border-neutral-400 bg-neutral-50 focus:ring-secondary-300 dark:border-neutral-700 dark:bg-neutral-700 dark:ring-offset-neutral-800 dark:focus:ring-secondary-600" />
                                     <span class="ml-3 text-sm text-neutral-500 dark:text-neutral-300">{{ "page.login.remember_me"|trans }}</span>
                                 </label>
                             </div>

@@ -1,0 +1,23 @@
+::selection {
+    @apply bg-secondary-400 #{!important};
+}
+
+input:not([type="checkbox"]), input::placeholder, textarea, textarea::placeholder {
+    @apply text-neutral-500 dark:text-neutral-400 #{!important};
+}
+
+input:not([type="checkbox"]), textarea {
+    @apply bg-neutral-200 border-neutral-400 dark:border-neutral-500 dark:bg-neutral-700 #{!important};
+
+    &:disabled {
+        @apply bg-neutral-300 text-neutral-600 dark:bg-neutral-700 dark:border-neutral-600 #{!important};
+    }
+}
+
+button {
+    @apply disabled:bg-neutral-500 disabled:text-neutral-100 dark:disabled:bg-neutral-600 dark:disabled:text-neutral-500 #{!important};
+}
+
+:focus {
+    @apply ring-2 ring-neutral-400 dark:ring-neutral-500 #{!important};
+}

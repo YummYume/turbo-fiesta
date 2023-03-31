@@ -36,6 +36,7 @@ common.switch_language: Changer de langue
 common.view_notifications: Afficher les notifications
 common.notifications: Notifications
 common.dismiss_notification: Ignorer la notification
+common.dismiss_all: Ignorer la totalité
 common.no_notification: Rien à signaler.
 common.content.create: Crée du contenu
 common.delete.cannot_be_undone: Cette action est irréversible.
@@ -161,6 +162,9 @@ page.search.type_to_search: Tapez n'importe quoi pour commencer la recherche.
 page.search.search_username: Par exemple, essayez de saisir { username }...
 
 ## Content
+### Show
+page.show_content.description: '{ title } : tout ce que vous avez besoin de savoir.'
+
 ### List
 page.content.title: Contenus
 page.content.description: Liste des contenus crée sur le site.
@@ -212,6 +216,9 @@ content.title: Titre
 content.blocks: Contenu
 content.categories: Catégories
 content.type: Type
+content.type.article: Article
+content.type.formation: Formation
+content.type.other: Contenu
 content.published: Publié
 content.visibility: Visibilité
 

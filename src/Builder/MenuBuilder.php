@@ -45,6 +45,12 @@ final class MenuBuilder
                 'icon' => 'contents',
             ],
         ]);
+        $menu->addChild('back_office.categories', [
+            'route' => 'admin_category',
+            'extras' => [
+                'icon' => 'category',
+            ],
+        ]);
 
         return $menu;
     }
@@ -62,6 +68,13 @@ final class MenuBuilder
                 'icon' => 'users',
             ],
         ]);
+        $this->setCurrent($menu->addChild('global_search.contents', [
+            'route' => 'app_search',
+            'routeParameters' => ['t' => SearchTypeEnum::Contents->value, 'q' => $options['query'] ?? ''],
+            'extras' => [
+                'icon' => 'contents',
+            ],
+        ]), true);
 
         $current = array_filter($menu->getChildren(), static fn (ItemInterface $item): bool => $item->isCurrent() ?? false);
 
