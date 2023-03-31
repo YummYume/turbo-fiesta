@@ -55,7 +55,25 @@ page.user_edit.send_validation_email: Envoyer un e-mail de validation (en Franç
 page.user_delete.title: Supprimer l'utilisateur
 page.user_delete.content: Voulez-vous vraiment supprimer cet utilisateur ?
 
+## Content
+### List
+page.content.title: Contenus
+page.content.description: Liste des contenus crée sur le site.
+
+### Edit
+page.content_edit.title: Modifier le contenu
+page.content_edit.description: Modifier les informations du contenu.
+page.content_edit.send_notification_email: Envoyer un e-mail de notification (en Français)
+
+### Delete
+page.content_delete.title: Supprmier le contenu
+page.content_delete.content: Voulez-vous vraiment supprimer ce contenu?
+
 # Flashes
 ## User
 flash.user.verified: L'utilisateur { email } est maintenant vérifié.
 flash.user.unverified: L'utilisateur { email } n'est plus vérifié.
+
+## Content
+flash.content.published: Le contenu { title } est maintenant publié.
+flash.content.unpublished: Le contenu { title } est maintenant non publié.

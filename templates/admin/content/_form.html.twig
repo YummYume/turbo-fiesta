@@ -1,0 +1,27 @@
+{% trans_default_domain "admin" %}
+
+{{ form_start(form) }}
+<div class="flex flex-col gap-4 md:flex-row">
+    <div class="grow basis-0">
+        {{ form_row(form.title) }}
+        {{ form_row(form.blocks) }}
+        {{ form_row(form.published) }}
+        {{ form_row(form.categories) }}
+         {{
+            component(
+                "button",
+                {
+                    content: "page.content_edit.send_notification_email"|trans,
+                    form: "content-send-notification-email-form",
+                    submit: true,
+                    disabled: notificationEmailDisabled ? false : true,
+                    centered: false,
+                    variant: "info",
+                    class: "mb-4 disabled:cursor-not-allowed disabled:!bg-blue-500"
+                }
+            )
+        }}
+    </div>
+</div>
+{{ component("button", { content: button_label|default("common.save"|trans), submit: true, class: "btn-outline", variant: "success", centered: true, ghost: true }) }}
+{{ form_end(form) }}

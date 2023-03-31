@@ -1,0 +1,21 @@
+{% extends "admin/layout.html.twig" %}
+
+{% trans_default_domain "admin" %}
+
+{% block title %}
+    {{ "page.content_edit.title"|trans }}
+{% endblock %}
+
+{% block description %}
+    {{ "page.content_edit.description"|trans }}
+{% endblock %}
+
+{% block main_title %}
+    {{ "page.content_edit.title"|trans }}
+{% endblock %}
+
+{% block main_body %}
+    <div id="content-admin-form" class="mx-auto flex max-w-4xl flex-col gap-4">
+        {% include "admin/content/_edit_content.html.twig" %}
+    </div>
+{% endblock %}

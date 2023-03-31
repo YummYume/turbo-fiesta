@@ -15,3 +15,8 @@ user.role.role_admin: Employee
 user.role.role_member: Member
 user.role.role_allowed_to_switch: Allowed to switch
 user.role.role_user: User
+
+# Contents
+content.title: Title
+content.published: Published
+content.unpublished: Unpublished

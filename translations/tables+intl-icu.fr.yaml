@@ -15,3 +15,8 @@ user.role.role_admin: Employé
 user.role.role_member: Membre
 user.role.role_allowed_to_switch: Autorisé à changer
 user.role.role_user: Utilisateur
+
+# Contents
+content.title: Titre
+content.published: Publié
+content.unpublished: Non publié
