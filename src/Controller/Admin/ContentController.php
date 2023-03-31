@@ -6,6 +6,7 @@ use App\Entity\Content;
 use App\Enum\ColorTypeEnum;
 use App\Form\Admin\BlockType;
 use App\Manager\FlashManager;
+use App\Manager\MessageManager;
 use App\Repository\ContentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,13 +43,6 @@ final class ContentController extends AbstractController
               ],
               'published' => $this->getContentPublishedRowOptions(),
               'actions' => [
-                  'info' => [
-                      'route' => 'admin_content_show',
-                      'routeParams' => [
-                          'id' => static fn (Content $content): string => $content->getId()->toBase32(),
-                      ],
-                      'icon' => 'eye',
-                  ],
                   'accent' => [
                       'route' => 'admin_content_edit',
                       'routeParams' => [
@@ -64,10 +58,37 @@ final class ContentController extends AbstractController
       return $this->render('admin/content/index.html.twig', ['config' => $config]);
     }
 
-    #[Route('/contents', name: 'admin_content_show', methods: ['GET'])]
-    public function show(): Response
+    #[Route('/new', name: 'admin_content_new', methods: ['GET', 'POST'])]
+    public function new(Request $request): Response
     {
-        return  $this->render('admin/content/index.html.twig', ['config' => []]);
+        $content = new Content();
+        $form = $this->createForm(BlockType::class, $content)->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $this->contentRepository->save($content, true);
+
+                $this->flashManager->flash('success', 'flash.new.success', translationDomain: 'admin');
+
+                return $this->redirectToRoute('admin_content_edit', [
+                    'id' => $content->getId(),
+                ], Response::HTTP_SEE_OTHER);
+            }
+            $this->flashManager->flash('error', 'flash.form.error', translationDomain: 'admin');
+
+            if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+
+                return $this->render('admin/content/_new_content.html.twig', [
+                    'content' => $content,
+                    'form' => $form,
+                ]);
+            }
+        }
+
+        return $this->render('admin/content/new.html.twig', [
+            'form' => $form,
+        ]);
     }
 
     #[Route('/{id}/edit', name: 'admin_content_edit', methods: ['GET', 'POST'])]
@@ -102,6 +123,34 @@ final class ContentController extends AbstractController
             'content' => $content,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}/send-notification', name: 'admin_content_send_notification', methods: ['POST'])]
+    public function sendValidationEmail(Request $request, Content $content, MessageManager $messageManager): Response
+    {
+        if ($this->isCsrfTokenValid('publish-'.$content->getId()->toBase32(), $request->request->get('_token'))) {
+            if ($content->isPublished()) {
+                $notifCount = $messageManager->createMessagesForContent($content, true);
+
+                $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.content.notification_email_sent', [
+                    'notifCount' =>  $notifCount,
+                ], translationDomain: 'admin');
+            } else {
+                $this->flashManager->flash(ColorTypeEnum::Warning->value, 'flash.content.not_published', translationDomain: 'admin');
+            }
+        } else {
+            $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_csrf');
+        }
+
+        if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+            $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+
+            return $this->render('admin/content/stream/notification_email.stream.html.twig', [
+                'content' => $content,
+            ]);
+        }
+
+        return $this->redirectToRoute('admin_user_edit', ['id' => $content->getId()->toBase32()], Response::HTTP_SEE_OTHER);
     }
 
     #[Route(

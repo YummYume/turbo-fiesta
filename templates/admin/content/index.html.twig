@@ -11,6 +11,17 @@
         <div class="flex min-h-[28.5rem] gap-2 flex-col md:flex-row">
             {{ knp_menu_render('back_office', { template: knp_custom_menu }) }}
             {{ component('table', { config }) }}
+            {{ component(
+                "button",
+                {
+                    icon: "add-circle",
+                    square: true,
+                    href: path("admin_content_new"),
+                    ariaLabel: ("icon.add_circle")|trans,
+                     "data-turbo-frame": "_top",
+                    centered: false
+                })
+            }}
         </div>
 
         <div class="flex items-center justify-center">

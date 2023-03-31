@@ -30,6 +30,10 @@ page.admin.description: The administration for MyApp
 flash.user.validation_email_sent: Validation email sent.
 flash.user.already_verified: This user is already verified.
 
+## Content
+flash.content.notification_email_sent: ({ notifCount }) Notification email(s) sent.
+flash.content.not_published: This content isn't published.
+
 # Pages
 ## Homepage
 page.homepage.title: Administration homepage
@@ -60,6 +64,9 @@ page.user_delete.content: Are you sure you want to delete this user?
 ### List
 page.content.title: Contents
 page.content.description: List of contents created on the website.
+
+### New
+page.content_new.title: New content
 
 ### Edit
 page.content_edit.title: Edit content

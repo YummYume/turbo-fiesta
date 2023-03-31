@@ -3,21 +3,19 @@
 {% trans_default_domain "admin" %}
 
 {% block title %}
-    {{ "page.content_edit.title"|trans }}
+    {{ "page.content_new.title"|trans }}
 {% endblock %}
 
 {% block description %}
-    {{ "page.content_edit.description"|trans }}
+    {{ "page.content_new.description"|trans }}
 {% endblock %}
 
 {% block main_title %}
-    {{ "page.content_edit.title"|trans }}
+    {{ "page.content_new.title"|trans }}
 {% endblock %}
 
 {% block main_body %}
     <div id="content-admin-form" class="mx-auto flex max-w-4xl flex-col gap-4">
-        {% include "admin/content/_edit_content.html.twig" %}
+        {% include "admin/content/_new_content.html.twig" %}
     </div>
-
-    {% include "admin/content/_send_notification_email.html.twig" with { content } only %}
 {% endblock %}
