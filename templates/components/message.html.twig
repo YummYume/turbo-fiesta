@@ -1,6 +1,6 @@
-<div id="message-{{ message.id }}" class="flex py-5 px-5 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600" {{ attributes }}>
+<div id="message-{{ message.id }}" class="flex py-5 px-5 border-b hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:border-neutral-600" {{ attributes }}>
     <div class="w-full relative">
-        <p class="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
+        <p class="font-normal text-sm mb-1.5 dark:text-neutral-400">
             {{ 'component.notification.new_content_available'|trans({ type: message.content.type.value }) }} <strong>{{ message.content.title|u.truncate(50, '...') }}</strong>
         </p>
         <form class="absolute -top-4 -right-4" action="{{ path('app_message_dismiss', { id: message.id }) }}" method="post">

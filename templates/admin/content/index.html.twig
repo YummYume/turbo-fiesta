@@ -8,18 +8,18 @@
             {{ "page.content.title"|trans }}
         </h1>
 
-        <div class="flex min-h-[28.5rem] gap-2 flex-col md:flex-row">
+        <div class="flex min-h-[28.5rem] gap-2 flex-col items-start md:flex-row">
             {{ knp_menu_render('back_office', { template: knp_custom_menu }) }}
             {{ component('table', { config }) }}
             {{ component(
                 "button",
                 {
+                    ariaLabel: ("icon.add_circle")|trans,
+                    centered: false,
+                    "data-turbo-frame": "_top",
+                    href: path("admin_content_new"),
                     icon: "add-circle",
                     square: true,
-                    href: path("admin_content_new"),
-                    ariaLabel: ("icon.add_circle")|trans,
-                     "data-turbo-frame": "_top",
-                    centered: false
                 })
             }}
         </div>

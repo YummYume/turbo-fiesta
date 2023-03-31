@@ -16,7 +16,7 @@
             class="sr-only peer"
             {% if config.col.extras.submitOnChange|default(false) %}data-action="change->submit#submit"{% endif %}
         />
-        <div class="w-11 h-6 bg-neutral-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-secondary-300 dark:peer-focus:ring-secondary-800 dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-neutral-100 after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-neutral-100 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-secondary-600"></div>
+        <div class="w-11 h-6 bg-neutral-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-secondary-300 dark:peer-focus:ring-secondary-800 dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-neutral-400 after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-neutral-100 after:border-neutral-400 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-700 peer-checked:bg-secondary-600"></div>
     </label>
     {% if config.col.extras.csrfToken|default(false) %}
         <input type="hidden" name="_token" value="{{ table_parse_option(config.col.extras.csrfToken, config.item) }}" />

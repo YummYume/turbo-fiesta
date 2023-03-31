@@ -3,7 +3,7 @@
         <ul class="inline-flex items-center -space-x-px">
             {% if first is defined and current != first %}
                 <li>
-                    <a class="block px-3 py-2 ml-0 leading-tight text-neutral-500 bg-neutral-100 border border-neutral-300 rounded-l-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                    <a class="block px-3 py-2 ml-0 leading-tight bg-neutral-100 border border-neutral-400 rounded-l-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
                         data-turbo-frame="table_crud"
                         href="{{ path(route, query|merge({ (pageParameterName): first })) }}"
                         aria-label="{{ "common.first_page"|trans({ number: first }) }}"
@@ -15,7 +15,7 @@
 
             {% if previous is defined %}
                 <li>
-                    <a class="block px-3 py-2 ml-0 leading-tight text-neutral-500 bg-neutral-100 border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                    <a class="block px-3 py-2 ml-0 leading-tight bg-neutral-100 border border-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
                         data-turbo-frame="table_crud"
                         href="{{ path(route, query|merge({ (pageParameterName): previous })) }}"
                         aria-label="{{ "common.previous_page"|trans({ number: previous }) }}"
@@ -28,24 +28,25 @@
             {% for page in pagesInRange %}
                 {% if page != current %}
                     <li>
-                        <a class="px-3 py-2 leading-tight text-neutral-500 bg-neutral-100 border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                        <a 
+                            aria-label="{{ "common.page_number"|trans({ number: page }) }}"
+                            class="px-3 py-2 leading-tight bg-neutral-100 border border-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
                             data-turbo-frame="table_crud"
                             href="{{ path(route, query|merge({ (pageParameterName): page })) }}"
-                            aria-label="{{ "common.page_number"|trans({ number: page }) }}"
                         >
                             {{ page }}
                         </a>
                     </li>
                 {% else %}
                     <li>
-                        <span class="px-3 py-2 leading-tight border border-neutral-300 bg-neutral-100 text-neutral-700 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100" aria-label="{{ "common.current_page"|trans({ number: page }) }}">{{ page }}</span>
+                        <span class="{{ page == 1 ? 'rounded-l-lg' }} {{ page == pageCount ? 'rounded-r-lg' }} px-3 py-2 leading-tight border border-neutral-400 bg-neutral-100 text-neutral-700 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100" aria-label="{{ "common.current_page"|trans({ number: page }) }}">{{ page }}</span>
                     </li>
                 {% endif %}
             {% endfor %}
 
             {% if next is defined %}
                 <li>
-                    <a class="block px-3 py-2 ml-0 leading-tight text-neutral-500 bg-neutral-100 border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                    <a class="block px-3 py-2 ml-0 leading-tight bg-neutral-100 border border-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
                         data-turbo-frame="table_crud"
                         href="{{ path(route, query|merge({ (pageParameterName): next })) }}"
                         aria-label="{{ "common.next_page"|trans({ number: next }) }}"
@@ -57,7 +58,7 @@
 
             {% if last is defined and current != last %}
                 <li>
-                    <a class="block px-3 py-2 ml-0 leading-tight text-neutral-500 bg-neutral-100 border border-neutral-300 rounded-r-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                    <a class="block px-3 py-2 ml-0 leading-tight bg-neutral-100 border border-neutral-400 rounded-r-lg hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
                         data-turbo-frame="table_crud"
                         href="{{ path(route, query|merge({ (pageParameterName): last })) }}"
                         aria-label="{{ "common.last_page"|trans({ number: last }) }}">

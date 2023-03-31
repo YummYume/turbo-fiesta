@@ -1,9 +1,5 @@
 .editor {
-    @apply p-4 prose rounded shadow-lg dark:bg-neutral-800;
-
-    ::selection {
-        @apply bg-secondary-400;
-    }
+    @apply p-4 prose rounded shadow-lg dark:bg-neutral-800 md:w-[48rem];
 }
 
 .prose {
@@ -43,6 +39,10 @@
 
     &-popover__items, &-inline-toolbar {
         @apply dark:text-black;
+    }
+
+    &-paragraph {
+        @apply dark:text-neutral-100 #{!important};
     }
 
     @media (min-width: 651px) {

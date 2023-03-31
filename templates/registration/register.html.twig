@@ -8,24 +8,35 @@
     {{ "page.register.description"|trans }}
 {% endblock %}
 
-{% block main_title %}
-    {{ "page.register.title"|trans }}
-{% endblock %}
-
 {% block main_body %}
-    <div class="mx-auto flex max-w-xs grow flex-col">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         {% for flash_error in app.flashes("verify_email_error") %}
             <div role="alert">
                 {{ flash_error }}
             </div>
         {% endfor %}
 
-        {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.profile.username) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        {{ component("button", { content: "common.register"|trans, submit: true }) }}
-        {{ form_end(registrationForm) }}
+        <a href="{{ path('app_homepage') }}" class="flex items-center text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+            {{ component('image', { src: asset('logo.png'), alt: 'logo' }) }}   
+        </a>
+        <div class="w-full bg-neutral-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-neutral-800 dark:border-neutral-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-neutral-100">
+                    {{ 'common.register'|trans }}
+                </h1>
+
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.profile.username) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+
+                    <div class="flex items-start">
+                        {{ form_row(registrationForm.agreeTerms) }}
+                    </div>
+
+                    {{ component("button", { content: "common.register"|trans, submit: true }) }}
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
     </div>
 {% endblock %}
