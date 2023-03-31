@@ -1,0 +1,15 @@
+::selection {
+    @apply bg-secondary-400;;
+}
+
+input::placeholder, textarea::placeholder {
+    @apply text-neutral-500 dark:text-neutral-400 #{!important};
+}
+
+input, textarea {
+    @apply bg-neutral-200 border-neutral-400 dark:border-neutral-500 dark:bg-neutral-700 #{!important};
+}
+
+:focus {
+    @apply ring-2 ring-neutral-400 dark:ring-neutral-500 #{!important};
+}

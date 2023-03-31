@@ -48,7 +48,7 @@
                 {% endblock %}
 
                 {% block nav %}
-                    <nav class="bg-neutral-100 border-neutral-200 px-4 shadow lg:px-6 py-2.5 dark:bg-neutral-900">
+                    <nav class="bg-neutral-100 border-neutral-400 px-4 shadow lg:px-6 py-2.5 dark:bg-neutral-900">
                         <div class="flex flex-wrap justify-between items-center">
                             <div class="flex justify-start items-center">
                                 {# Sidebar button #}
@@ -86,7 +86,7 @@
                                             </div>
                                             <input
                                                 aria-label="{{ "common.search"|trans }}"
-                                                class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-secondary-500 focus:border-secondary-500 block w-full pl-10 p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-neutral-100 dark:focus:ring-secondary-500 dark:focus:border-secondary-500"
+                                                class="border sm:text-sm rounded-lg block w-full pl-10 p-2.5"
                                                 data-action="click->modal#show"
                                                 name="q"
                                                 placeholder="{{ "common.search"|trans }}..."
@@ -107,7 +107,7 @@
                                         <div class="relative w-full h-full max-w-md md:h-auto">
                                             <div class="relative bg-neutral-100 rounded-lg shadow dark:bg-neutral-800 p-6">
                                                 <div class="flex items-start justify-between rounded-t mb-2">
-                                                    <h3 class="text-lg font-normal text-neutral-500 dark:text-neutral-400">
+                                                    <h3 class="text-lg font-normal">
                                                         {{ "common.global_search"|trans }}
                                                     </h3>
                                                     <button
@@ -214,7 +214,7 @@
                             </a>
                         </li>
                     </ul>
-                    <ul class="pt-5 mt-5 space-y-2 border-t border-neutral-200 dark:border-neutral-700">
+                    <ul class="pt-5 mt-5 space-y-2 border-t border-neutral-400 dark:border-neutral-700">
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-neutral-100 group">
                                 <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 transition duration-75 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>

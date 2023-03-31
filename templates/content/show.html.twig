@@ -1,0 +1,20 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block description %}
+
+{% endblock %}
+
+{% block main_title %}
+
+{% endblock %}
+
+{% block main_body %}
+    <div {{ stimulus_controller("editor-parser") }} data-editor-parser-data-value="{{ content.blocks|json_encode }}" class="prose my-4">
+        <div class="cdx-loader min-h-[300px]" data-editor-parser-target="loading"></div>
+        <div class="prose" data-editor-parser-target="content"></div>
+    </div>
+{% endblock %}

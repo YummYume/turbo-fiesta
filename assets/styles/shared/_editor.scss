@@ -1,9 +1,5 @@
 .editor {
     @apply p-4 prose rounded shadow-lg dark:bg-neutral-800;
-
-    ::selection {
-        @apply bg-secondary-400;
-    }
 }
 
 .prose {

@@ -14,24 +14,17 @@
 
 {% block main_body %}
     <section class="flex grow items-center justify-center gap-8">
-        {% if app.user %}
-            {% if is_granted(constant("App\\Enum\\UserRoleEnum::Admin").value) %}
-                <a href="{{ path("admin_homepage") }}">{{ component("button", { content: "common.admin"|trans }) }}</a>
-            {% endif %}
-            <a href="{{ path("security_logout") }}">{{ component("button", { content: "common.logout"|trans }) }}</a>
-        {% else %}
+        {% if not app.user %}
             <a href="{{ path("security_login") }}">{{ component("button", { content: "page.login.title"|trans }) }}</a>
             <a href="{{ path("app_register") }}">{{ component("button", { content: "common.register"|trans }) }}</a>
         {% endif %}
     </section>
 
-    {{ form_start(form) }}
-    {{ form_row(form.editor) }}
-    <button type="submit">Submit</button>
-    {{ form_end(form) }}
-
-    <div {{ stimulus_controller("editor-parser") }} data-editor-parser-data-value="{{ form.editor.vars.data }}" class="prose my-4">
-        <div class="cdx-loader min-h-[300px]" data-editor-parser-target="loading"></div>
-        <div class="prose" data-editor-parser-target="content"></div>
-    </div>
+    <section class="flex flex-col gap-2">
+        {% for content in contents %}
+            <a href="{{ path('app_content_show', { slug: content.slug }) }}" class="block bg-white border border-neutral-400 p-6 rounded-lg shadow hover:bg-secondary-600 hover:text-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:bg-secondary-400">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight">{{ content.title }} ({{ content.type.name }})</h5>
+            </a>
+        {% endfor %}
+    </section>
 {% endblock %}
