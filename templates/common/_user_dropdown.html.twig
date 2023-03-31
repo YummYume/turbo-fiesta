@@ -17,15 +17,15 @@
         >
             <div class="py-3 px-4">
                 <span class="block text-sm font-semibold text-neutral-900 dark:text-neutral-100">{{ app.user.profile.username }}</span>
-                <span class="block text-sm font-light text-neutral-500 truncate dark:text-neutral-400">{{ app.user.email }}</span>
+                <span class="block text-sm font-light truncate">{{ app.user.email }}</span>
             </div>
-            <ul class="py-1 font-light text-neutral-500 dark:text-neutral-400" aria-labelledby="dropdown">
+            <ul class="py-1 font-light" aria-labelledby="dropdown">
                 <li>
                     <a
                         class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                         href="{{ path("app_profile_show", { slug: app.user.profile.slug }) }}"
                     >
-                        {{ component('icon', { class: 'h-5 w-5 mr-2 text-neutral-400', icon: 'user-circle' }) }}
+                        {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'user-circle' }) }}
                         {{ "common.my_profile"|trans }}
                     </a>
                 </li>
@@ -34,33 +34,33 @@
                         class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                         href="{{ path("app_edit_profile") }}"
                     >
-                        {{ component('icon', { class: 'h-5 w-5 mr-2 text-neutral-400', icon: 'cog' }) }}
+                        {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'cog' }) }}
                         {{ "common.account_settings"|trans }}
                     </a>
                 </li>
             </ul>
 
             {% if is_granted(constant("App\\Enum\\UserRoleEnum::SuperAdmin").value) %}
-                <ul class="py-1 font-light text-neutral-500 dark:text-neutral-400" aria-labelledby="dropdown">
+                <ul class="py-1 font-light" aria-labelledby="dropdown">
                     <li>
                         <a
                             class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                             href="{{ path("admin_homepage") }}"
                         >
-                            {{ component('icon', { class: 'h-5 w-5 mr-2 text-neutral-400', icon: 'wrench' }) }}
+                            {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'wrench' }) }}
                             {{ "common.admin"|trans }}
                         </a>
                     </li>
                 </ul>
             {% endif %}
 
-            <ul class="py-1 font-light text-neutral-500 dark:text-neutral-400" aria-labelledby="dropdown">
+            <ul class="py-1 font-light" aria-labelledby="dropdown">
                 <li>
                     <a
                         class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                         href="{{ path("security_logout") }}"
                     >
-                        {{ component('icon', { class: 'h-5 w-5 mr-2 text-neutral-400', icon: 'log-out' }) }}
+                        {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'log-out' }) }}
                         {{ "common.logout"|trans }}
                     </a>
                 </li>
@@ -70,7 +70,7 @@
         <button
             aria-expanded="false"
             aria-label={{ 'common.account_menu'|trans }}
-            class="p-2 text-neutral-500 rounded-full hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-700 focus:ring-4 focus:ring-neutral-300 dark:focus:ring-neutral-600"
+            class="p-2 rounded-full hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-700 focus:ring-4 focus:ring-neutral-300 dark:focus:ring-neutral-600"
             data-dropdown-target="trigger"
             type="button"
         >
@@ -82,7 +82,7 @@
             class="hidden z-50 my-4 w-56 text-base list-none bg-neutral-100 rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600"
             data-dropdown-target="dropdown"
         >
-            <ul class="py-1 font-light text-neutral-500 dark:text-neutral-400" aria-labelledby="dropdown">
+            <ul class="py-1 font-light" aria-labelledby="dropdown">
                 <li>
                     <a
                         class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"

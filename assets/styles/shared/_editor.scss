@@ -8,6 +8,10 @@
 
 .prose {
     @apply dark:text-neutral-100;
+
+    blockquote {
+        @apply dark:text-neutral-100;
+    }
 }
 
 .codex-editor__redactor {
@@ -17,10 +21,6 @@
 .cdx {
     &-block {
         @apply dark:text-neutral-100;
-    }
-
-    &-input {
-        @apply dark:border-neutral-100 dark:text-neutral-100;
     }
 }
 
