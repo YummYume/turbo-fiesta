@@ -32,10 +32,22 @@
                                         class="text-lg transition-all max-w-fit"
                                         href="{{ path(config.route, {}|merge(config.routeParam|reduce((acc, curr) => acc|merge({ (curr): formatted[config.slugProperty[curr]] }), {}))) }}"
                                     >
-                                        {{ formatted[config.nameProperty]|sanitize_html("app.highlight_sanitizer") }}
+                                        {% set nameDef = formatted[config.nameProperty] %}
+
+                                        {% if config.nameCallback is defined %}
+                                            {% set nameDef = table_parse_option(config.nameCallback, nameDef) %}
+                                        {% endif %}
+
+                                        {{ nameDef|sanitize_html("app.highlight_sanitizer") }}
                                     </a>
                                     <p>
-                                        {{ (formatted[config.descProperty] ?? "")|sanitize_html("app.highlight_sanitizer") }}
+                                        {% set desc = formatted[config.descProperty] ?? "" %}
+
+                                        {% if config.descCallback is defined %}
+                                            {% set desc = table_parse_option(config.descCallback, desc) %}
+                                        {% endif %}
+
+                                        {{ desc|sanitize_html("app.highlight_sanitizer") }}
                                     </p>
                                 </div>
                             {% endfor %}

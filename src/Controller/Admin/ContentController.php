@@ -165,7 +165,9 @@ final class ContentController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('admin_user_edit', ['id' => $content->getId()->toBase32()], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_user_edit', [
+            'id' => $content->getId()->toBase32(),
+        ], Response::HTTP_SEE_OTHER);
     }
 
     #[Route(

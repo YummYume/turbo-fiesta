@@ -4,7 +4,7 @@
             {{ 'component.notification.new_content_available'|trans({ type: message.content.type.value }) }} <strong>{{ message.content.title|u.truncate(50, '...') }}</strong>
         </p>
         <form class="absolute -top-4 -right-4" action="{{ path('app_message_dismiss', { id: message.id }) }}" method="post">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete-' ~ message.id) }}" />
+            <input type="hidden" name="_token" value="{{ csrf_token('dismiss-' ~ message.id) }}" />
             <button type="submit" class="dark:text-neutral-100">
                 <span class="sr-only">{{ 'common.dismiss_notification' }}</span>
                 {{ component('icon', { icon: 'x-mark', class: 'h-5 w-5' }) }}
@@ -14,8 +14,9 @@
             {% if message.createdAt %}
                 <span>{{ message.createdAt|format_datetime }}</span>
             {% endif %}
-            {# TODO link #}
-            <a href="#">{{ 'component.notification.read'|trans({ type: message.content.type.value }) }}</a>
+            <a href="{{ path('app_content_show', { slug: message.content.slug }) }}">
+                {{ 'component.notification.read'|trans({ type: message.content.type.value }) }}
+            </a>
         </div>
     </div>
 </div>

@@ -42,7 +42,6 @@ class Content
     private ?string $slug = null;
 
     #[ORM\Column]
-    #[Groups('searchable')]
     private array $blocks = [];
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'contents')]
@@ -50,6 +49,7 @@ class Content
     private Collection $categories;
 
     #[ORM\Column(length: 255, enumType: ContentTypeEnum::class)]
+    #[Groups('searchable')]
     private ContentTypeEnum $type = ContentTypeEnum::Article;
 
     #[ORM\Column]
@@ -210,5 +210,11 @@ class Content
         }
 
         return $profiles;
+    }
+
+    #[Groups('searchable')]
+    public function isIndexable(): bool
+    {
+        return $this->published && ContentVisibilityEnum::Public === $this->visibility;
     }
 }

@@ -31,6 +31,7 @@ common.switch_language: Switch language
 common.view_notifications: View notifications
 common.notifications: Notifications
 common.dismiss_notification: Dismiss notification
+common.dismiss_all: Dismiss all
 common.no_notification: Nothing to see here.
 
 # Icons
@@ -141,6 +142,9 @@ page.search.show_profile: Show profile
 page.search.type_to_search: Type anything to start searching.
 page.search.search_username: For example, try to type in { username }...
 
+## Content
+page.show_content.description: '{ title } : everything you need to know.'
+
 # Entities
 ## User
 user.email: Email
@@ -176,6 +180,9 @@ content.title: Title
 content.blocks: Content
 content.categories: Categories
 content.type: Type
+content.type.article: Article
+content.type.formation: Formation
+content.type.other: Content
 content.published: Published
 content.visibility: Visibility
 

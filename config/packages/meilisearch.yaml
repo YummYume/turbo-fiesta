@@ -9,3 +9,9 @@ meilisearch:
           index_if: isIndexable
           settings:
               searchableAttributes: ['username', 'slug', 'description', 'picture']
+        - name: contents
+          class: App\Entity\Content
+          enable_serializer_groups: true
+          index_if: isIndexable
+          settings:
+              searchableAttributes: ['title', 'slug', 'type']
