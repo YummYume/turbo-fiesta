@@ -1,6 +1,11 @@
 # Common
 common.app_name: AppName
 common.description: Bienvenue sur MyApp !
+common.create: Créer
+common.delete: Supprimer
+common.edit: Modifier
+common.back_to_list: Retour à la liste
+common.go_back: Retour en arrière
 common.login: Connexion
 common.logout: Déconnexion
 common.register: Enregistrement
@@ -32,6 +37,8 @@ common.view_notifications: Afficher les notifications
 common.notifications: Notifications
 common.dismiss_notification: Ignorer la notification
 common.no_notification: Rien à signaler.
+common.content.create: Crée du contenu
+common.delete.cannot_be_undone: Cette action est irréversible.
 
 ## Icons
 icon.eye: Afficher
@@ -39,8 +46,20 @@ icon.pencil: Modifier
 
 # Flashes
 ## Common
+flash.common.created: Crée avec succés.
+flash.common.updated: Mis à jour avec succés.
+flash.common.deleted: Supprimé avec succès.
 flash.common.invalid_form: Formulaire non valide. Veuillez réessayer.
 flash.common.invalid_csrf: Jeton CSRF non valide. Veuillez réessayer.
+
+## Content email
+flash.content.notification_email_sent: >-
+    {notifCount, plural,
+        =0 {Aucune notification envoyée.}
+        one {1 notification envoyée.}
+        other {# notifications envoyées.}
+    }
+flash.content.not_published: Ce contenu n'est pas publié.
 
 ## Register email
 flash.register.email_sent: Merci de vous être enregistré. Nous vous avons envoyé un email pour vérifier votre compte.
@@ -141,6 +160,23 @@ page.search.show_profile: Voir le profil
 page.search.type_to_search: Tapez n'importe quoi pour commencer la recherche.
 page.search.search_username: Par exemple, essayez de saisir { username }...
 
+## Content
+### List
+page.content.title: Contenus
+page.content.description: Liste des contenus crée sur le site.
+
+### New
+page.content_new.title: Nouveau contenu
+
+### Edit
+page.content_edit.title: Modifier le contenu
+page.content_edit.description: Modifier les informations du contenu.
+page.content_edit.send_notification_email: Envoyer les notifications
+
+### Delete
+page.content_delete.title: Supprmier le contenu
+page.content_delete.content: Voulez-vous vraiment supprimer ce contenu?
+
 # Entities
 ## User
 user.email: Courrier électronique
@@ -233,3 +269,4 @@ form.editor.tools.quote.config.caption_placeholder: Auteur de la citation
 
 ### Other
 form.editor.placeholder: Racontez-nous vos meilleures histoires...
+icon.add_circle: add_circle.svg

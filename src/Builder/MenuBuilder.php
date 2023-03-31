@@ -39,6 +39,12 @@ final class MenuBuilder
                 'icon' => 'users',
             ],
         ]);
+        $menu->addChild('back_office.contents', [
+            'route' => 'admin_content',
+            'extras' => [
+                'icon' => 'contents',
+            ],
+        ]);
 
         return $menu;
     }

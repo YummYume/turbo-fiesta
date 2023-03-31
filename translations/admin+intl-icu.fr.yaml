@@ -29,6 +29,15 @@ page.admin.description: L'administration pour MyApp
 flash.user.validation_email_sent: E-mail de validation envoyé.
 flash.user.already_verified: Cet utilisateur est déjà vérifié.
 
+## Content
+flash.content.notification_email_sent: >-
+    {notifCount, plural,
+        =0 {Aucune notification envoyée.}
+        one {1 notification envoyée.}
+        other {# notifications envoyées.}
+    }
+flash.content.not_published: Ce contenu n'est pas publié.
+
 # Pages
 ## Page d'accueil
 page.homepage.title: Page d'accueil de l'administration
@@ -55,7 +64,28 @@ page.user_edit.send_validation_email: Envoyer un e-mail de validation (en Franç
 page.user_delete.title: Supprimer l'utilisateur
 page.user_delete.content: Voulez-vous vraiment supprimer cet utilisateur ?
 
+## Content
+### List
+page.content.title: Contenus
+page.content.description: Liste des contenus crée sur le site.
+
+### New
+page.content_new.title: Nouveau contenu
+
+### Edit
+page.content_edit.title: Modifier le contenu
+page.content_edit.description: Modifier les informations du contenu.
+page.content_edit.send_notification_email: Envoyer les notifications
+
+### Delete
+page.content_delete.title: Supprmier le contenu
+page.content_delete.content: Voulez-vous vraiment supprimer ce contenu?
+
 # Flashes
 ## User
 flash.user.verified: L'utilisateur { email } est maintenant vérifié.
 flash.user.unverified: L'utilisateur { email } n'est plus vérifié.
+
+## Content
+flash.content.published: Le contenu { title } est maintenant publié.
+flash.content.unpublished: Le contenu { title } est maintenant non publié.

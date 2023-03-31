@@ -1,6 +1,7 @@
 # Back office
 back_office.home: Accueil
 back_office.users: Utilisateurs
+back_office.contents: Contenus
 
 # Global search
 global_search.profiles: Profils

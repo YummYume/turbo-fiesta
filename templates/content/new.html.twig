@@ -1,0 +1,19 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ "page.content_new.title"|trans }}
+{% endblock %}
+
+{% block description %}
+    {{ "page.content_new.description"|trans }}
+{% endblock %}
+
+{% block main_title %}
+    {{ "page.content_new.title"|trans }}
+{% endblock %}
+
+{% block main_body %}
+    <div id="content-form" class="mx-auto flex max-w-4xl flex-col gap-4">
+        {% include "content/_new_content.html.twig" %}
+    </div>
+{% endblock %}

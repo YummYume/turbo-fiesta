@@ -1,0 +1,28 @@
+{% component modal
+    with
+    {
+        title: "page.content_delete.title"|trans,
+        modalId: "delete-content-modal",
+        openButtonText: "common.delete"|trans,
+        openButtonClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+        closeButtonText: "common.go_back"|trans,
+        closeButtonClass: "focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+    }
+%}
+
+{% block content %}
+    {{ "page.content_delete.content"|trans }} <strong class="text-red-600">{{ "common.delete.cannot_be_undone"|trans }}</strong>
+{% endblock %}
+
+{% block modal_action %}
+    {{ parent() }}
+    {{ component("button", { id: "delete-content", content: "common.delete"|trans, submit: true, class: "bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" }) }}
+{% endblock %}
+
+{% block modal_box %}
+    <form method="post" action="{{ path("content_delete", { id: content.id.toBase32 }) }}">
+        <input type="hidden" name="_token" value="{{ csrf_token("delete-" ~ content.id.toBase32) }}" />
+        {{ parent() }}
+    </form>
+{% endblock %}
+{% endcomponent %}

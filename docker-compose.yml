@@ -139,7 +139,7 @@ services:
       MERCURE_PUBLISHER_JWT_KEY: "${MERCURE_JWT_SECRET:?err}"
       MERCURE_SUBSCRIBER_JWT_KEY: "${MERCURE_JWT_SECRET:?err}"
       MERCURE_EXTRA_DIRECTIVES: |
-        cors_origins http://localhost
+        cors_origins ${MERCURE_ORIGIN:-http://localhost}
         use_forwarded_headers "1"
     # Uncomment the following line to enable the development mode
     command: /usr/bin/caddy run --config /etc/caddy/Caddyfile.dev

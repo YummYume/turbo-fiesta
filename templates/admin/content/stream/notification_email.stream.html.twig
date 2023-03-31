@@ -1,0 +1,7 @@
+{% include "common/stream/alert.stream.html.twig" only %}
+
+<turbo-stream action="replace" target="content-send-notification-email-form">
+    <template>
+        {% include "admin/content/_send_notification_email.html.twig" with { content } only %}
+    </template>
+</turbo-stream>

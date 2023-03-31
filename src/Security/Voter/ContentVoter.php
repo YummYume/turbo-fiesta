@@ -22,16 +22,12 @@ class ContentVoter extends Voter
 
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return \in_array($attribute, [self::VIEW, self::CREATE, self::EDIT, self::DELETE], true) && $subject instanceof Content;
+        return \in_array($attribute, [self::VIEW, self::CREATE, self::EDIT, self::DELETE], true) && ($subject instanceof Content || null === $subject);
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-
-        if (!$subject instanceof Content) {
-            return false;
-        }
 
         return match ($attribute) {
             self::VIEW => $this->canView($subject),

@@ -1,6 +1,11 @@
 # Common
 common.app_name: AppName
 common.description: Welcome to MyApp!
+common.create: Create
+common.delete: Delete
+common.edit: Edit
+common.back_to_list: Back to list
+common.go_back: Go back
 common.login: Sign in
 common.logout: Logout
 common.register: Register
@@ -32,6 +37,8 @@ common.view_notifications: View notifications
 common.notifications: Notifications
 common.dismiss_notification: Dismiss notification
 common.no_notification: Nothing to see here.
+common.content.create: Create content
+common.delete.cannot_be_undone: This cannot be undone.
 
 # Icons
 icon.eye: Show
@@ -39,8 +46,20 @@ icon.pencil: Edit
 
 # Flashes
 ## Common
+flash.common.created: Created successfully.
+flash.common.updated: Updated successfully.
+flash.common.deleted: Deleted successfully.
 flash.common.invalid_form: Invalid form. Please try again.
 flash.common.invalid_csrf: Invalid CSRF token. Please try again.
+
+## Content email
+flash.content.notification_email_sent: >-
+    {notifCount, plural,
+        =0 {No notification sent.}
+        one {1 notification sent.}
+        other {# notifications sent.}
+    }
+flash.content.not_published: This content isn't published.
 
 ## Register email
 flash.register.email_sent: Thank you for registering. We sent you an email to verify your account.
@@ -141,6 +160,23 @@ page.search.show_profile: Show profile
 page.search.type_to_search: Type anything to start searching.
 page.search.search_username: For example, try to type in { username }...
 
+## Content
+### List
+page.content.title: Contents
+page.content.description: List of contents created on the website.
+
+### New
+page.content_new.title: New content
+
+### Edit
+page.content_edit.title: Edit content
+page.content_edit.description: Edit a content's information.
+page.content_edit.send_notification_email: Send notifications
+
+### Delete
+page.content_delete.title: Delete content
+page.content_delete.content: Are you sure you want to delete this content?
+
 # Entities
 ## User
 user.email: Email
@@ -233,3 +269,4 @@ form.editor.tools.quote.config.caption_placeholder: "Quote's author"
 
 ### Other
 form.editor.placeholder: Tell us your best stories...
+icon.add_circle: add_circle.svg

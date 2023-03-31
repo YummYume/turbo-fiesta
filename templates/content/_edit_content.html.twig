@@ -1,0 +1,9 @@
+{% include "content/_form.html.twig" with { form, button_label: "common.edit"|trans, notificationEmailDisabled: content.published, editing: true } only %}
+{% include "content/_send_notification_email.html.twig" with { content } only %}
+
+<div class="flex w-full items-center justify-center gap-6">
+    {{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("content") }) }}
+    {% if is_granted(constant("App\\Security\\Voter\\ContentVoter::DELETE"), content) %}
+        {% include "content/_delete_form.html.twig" with { content } only %}
+    {% endif %}
+</div>
