@@ -7,6 +7,7 @@
 <div class="max-w-xs">
     {{ form_row(profileForm.username) }}
     {{ form_row(profileForm.description) }}
+    {{ form_row(profileForm.categories) }}
     {{ form_row(profileForm.picture) }}
     {{ component("button", { content: "page.edit_profile.update_profile"|trans, submit: true }) }}
 </div>

@@ -28,6 +28,9 @@ common.show_password: Afficher/masquer le mot de passe
 common.menu: Menu
 common.no_script_message: Il semble que Javascript ne soit pas activé dans votre navigateur. Vous pourriez rencontrer des problèmes lors de la navigation.
 common.switch_language: Changer de langue
+common.view_notifications: Afficher les notifications
+common.notifications: Notifications
+common.dismiss_notification: Ignorer la notification
 
 ## Icons
 icon.eye: Afficher
@@ -181,6 +184,20 @@ category.name: Nom
 ## Components
 # Deletion prompt modal
 component.deletion_prompt_modal.label: Pour continuer, tapez "{ prompt }".
+
+## Notification
+component.notification.new_content_available: >-
+    {type, select,
+        article {Nouvel article disponible pour vous !}
+        formation {Nouvelle formation disponible pour vous !}
+        other {Nouveau contenu disponible pour vous !}
+    }
+component.notification.read: >-
+    {type, select,
+        article {Lire cet article}
+        formation {Lire cette formation}
+        other {Lire ce contenu}
+    }
 
 # Forms
 ## Editor

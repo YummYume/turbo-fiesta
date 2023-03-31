@@ -76,6 +76,14 @@
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {{ "user.categories"|trans({}, "tables") }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user.roles ? user.profile.categories|map(category => category.name)|join(", ") }}
+                    </td>
+                </tr>
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                         {{ "common.created_at"|trans }}
                     </th>
                     <td class="px-6 py-4">

@@ -28,6 +28,9 @@ common.show_password: Show/hide password
 common.menu: Menu
 common.no_script_message: It looks like JavaScript is not enabled in your browser. You might experience some issues while browsing.
 common.switch_language: Switch language
+common.view_notifications: View notifications
+common.notifications: Notifications
+common.dismiss_notification: Dismiss notification
 
 # Icons
 icon.eye: Show
@@ -181,6 +184,20 @@ category.name: Name
 # Components
 ## Deletion prompt modal
 component.deletion_prompt_modal.label: To continue, type in "{ prompt }".
+
+## Notification
+component.notification.new_content_available: >-
+    {type, select,
+        article {New article available for you!}
+        formation {New formation available for you!}
+        other {New content available for you!}
+    }
+component.notification.read: >-
+    {type, select,
+        article {Read this article}
+        formation {Read this formation}
+        other {Read this content}
+    }
 
 # Forms
 ## Editor

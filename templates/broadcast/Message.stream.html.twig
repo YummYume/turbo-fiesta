@@ -1,22 +1,25 @@
-{# Learn how to use Turbo Streams: https://github.com/symfony/ux-turbo#broadcast-doctrine-entities-update #}
 {% block create %}
-<turbo-stream action="append" target="messages">
-    <template>
-        <div id="{{ 'message_' ~ id }}">
-            #{{ id }} created
-        </div>
-    </template>
-</turbo-stream>
+    {% if app.user %}
+        <turbo-stream action="append" target="profile-{{ app.user.profile.id }}-unread">
+            <template>
+                {% include "icon/notification_unread.html.twig" only %}
+            </template>
+        </turbo-stream>
+
+        <turbo-stream action="append" target="profile-{{ app.user.profile.id }}-messages">
+            <template>
+                {{ component("message", { message: entity }) }}
+            </template>
+        </turbo-stream>
+    {% endif %}
 {% endblock %}
 
 {% block update %}
-<turbo-stream action="update" target="message_{{ id }}">
-    <template>
-        #{{ id }} updated
-    </template>
-</turbo-stream>
+    {% if app.user and not app.user.profile.hasUnreadMessage %}
+        <turbo-stream action="remove" target="profile-{{ app.user.profile.id }}-unread"></turbo-stream>
+    {% endif %}
 {% endblock %}
 
 {% block remove %}
-<turbo-stream action="remove" target="message_{{ id }}"></turbo-stream>
+    <turbo-stream action="remove" target="message-{{ id }}"></turbo-stream>
 {% endblock %}
