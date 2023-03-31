@@ -82,7 +82,7 @@
                                         <label for="topbar-search" class="sr-only">Search</label>
                                         <div class="relative lg:w-96">
                                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                                <svg class="w-5 h-5 text-neutral-500 dark:text-neutral-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                                             </div>
                                             <input
                                                 aria-label="{{ "common.search"|trans }}"
@@ -100,7 +100,7 @@
                                 {# Mobile search #}
                                 <button
                                     type="button"
-                                    class="p-2 text-neutral-500 rounded-lg lg:hidden hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
+                                    class="p-2 rounded-lg lg:hidden hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
                                     data-action="click->modal#show"
                                 >
                                     <span class="sr-only">Search</span>
@@ -109,7 +109,7 @@
 
                                 {# Theme switcher #}
                                 <a
-                                    class="p-2 mr-1 rounded-lg hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-700 focus:ring-4 focus:ring-neutral-300 dark:focus:ring-neutral-600"
+                                    class="p-2 mr-1 rounded-lg hover:bg-neutral-200 dark:hover:text-neutral-100 dark:hover:bg-neutral-700 focus:ring-4 focus:ring-neutral-300 dark:focus:ring-neutral-600"
                                     data-tooltip-target="trigger"
                                     role="button"
                                     href="{{ path('app_change_theme') }}"
