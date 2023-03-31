@@ -32,7 +32,7 @@ final class MessageController extends AbstractController
         $referer = $request->headers->get('referer', $this->generateUrl('app_homepage'));
         $response = new RedirectResponse($referer);
 
-        if ($this->isCsrfTokenValid('delete-'.$message->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('dismiss-'.$message->getId(), $request->request->get('_token'))) {
             $this->messageRepository->remove($message, true);
         } else {
             $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_csrf');
@@ -61,6 +61,32 @@ final class MessageController extends AbstractController
             foreach ($user->getProfile()->getUnreadMessages() as $message) {
                 $message->setViewed(true);
                 $this->messageRepository->save($message, true);
+            }
+        } else {
+            $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_csrf');
+        }
+
+        if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+            $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+
+            return $this->render('common/stream/alert.stream.html.twig');
+        }
+
+        return $response;
+    }
+
+    #[Route('/dismiss-all', name: 'app_message_dismiss_all', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function dismissAll(Request $request): Response
+    {
+        $referer = $request->headers->get('referer', $this->generateUrl('app_homepage'));
+        $response = new RedirectResponse($referer);
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($this->isCsrfTokenValid('dismiss-all-'.$user->getId(), $request->request->get('_token'))) {
+            foreach ($user->getProfile()->getMessages() as $message) {
+                $this->messageRepository->remove($message, true);
             }
         } else {
             $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_csrf');

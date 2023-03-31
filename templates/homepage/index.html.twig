@@ -27,7 +27,7 @@
                 href="{{ path('app_content_show', { slug: content.slug }) }}"
             >
                 <span class="bg-purple-400 text-sm font-medium px-2.5 text-neutral-100 py-0.5 rounded-full w-max">
-                    {{ content.type.name }}
+                    {{ ("content.type.#{content.type.value}")|trans }}
                 </span>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight">{{ content.title }}</h5>
 

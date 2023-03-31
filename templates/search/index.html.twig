@@ -47,10 +47,22 @@
                                 >
                                     <div class="p-4 shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
                                         <h2>
-                                            {{ formatted[attributes.nameProperty]|sanitize_html("app.highlight_sanitizer") }}
+                                            {% set nameDef = formatted[attributes.nameProperty] %}
+
+                                            {% if attributes.nameCallback is defined %}
+                                                {% set nameDef = table_parse_option(attributes.nameCallback, nameDef) %}
+                                            {% endif %}
+
+                                            {{ nameDef|sanitize_html("app.highlight_sanitizer") }}
                                         </h2>
                                         <p>
-                                            {{ (formatted[attributes.descProperty] ?? "")|sanitize_html("app.highlight_sanitizer") }}
+                                            {% set desc = formatted[attributes.descProperty] ?? "" %}
+
+                                            {% if attributes.descCallback is defined %}
+                                                {% set desc = table_parse_option(attributes.descCallback, desc) %}
+                                            {% endif %}
+
+                                            {{ desc|sanitize_html("app.highlight_sanitizer") }}
                                         </p>
                                     </div>
                                 </a>
