@@ -8,13 +8,12 @@
     <section>
         <div class="mx-auto flex flex-col items-center px-6 py-8 lg:py-0">
             <a href="#" class="mb-6 flex items-center justify-center text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
-                <img class="mr-2 h-8 w-8" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
-                Flowbite
+                <img src="{{ asset('logo.png') }}" alt="logo">
             </a>
             <div class="w-full rounded-lg bg-neutral-100 shadow dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:max-w-md md:mt-0 xl:p-0">
                 <div class="space-y-4 p-6 sm:p-8 md:space-y-6">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-900 dark:text-neutral-100 md:text-2xl">
-                        Sign in to your account
+                        {{ 'common.login'|trans }}
                     </h1>
                     <form method="post" class="space-y-4 md:space-y-6">
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token("authenticate") }}" />

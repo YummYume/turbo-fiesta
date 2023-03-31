@@ -26,10 +26,24 @@
                 class="bg-white border border-neutral-400 flex items-center gap-4 p-6 rounded-lg shadow hover:bg-secondary-600 hover:text-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:bg-secondary-400"
                 href="{{ path('app_content_show', { slug: content.slug }) }}"
             >
-                <span class="bg-purple-200 text-sm font-medium px-2.5 py-0.5 rounded-full w-max dark:bg-purple-700">
+                <span class="bg-purple-400 text-sm font-medium px-2.5 text-neutral-100 py-0.5 rounded-full w-max">
                     {{ content.type.name }}
                 </span>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight">{{ content.title }}</h5>
+
+                {% if content.createdBy %}
+                    <span class="flex items-center gap-2 ml-auto">
+                        {{ component("image", {
+                            alt: "user.profile.picture"|trans({ username: content.createdBy.profile.username }),
+                            class: 'rounded-full',
+                            filter: "avatar_small",
+                            height: 32,
+                            src: vich_uploader_asset(content.createdBy.profile.picture, "file"),
+                            width: 32,
+                        }) }}
+                        {{ content.createdBy.profile.username }}
+                    </span>
+                {% endif %}
             </a>
         {% endfor %}
     </section>
