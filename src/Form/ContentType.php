@@ -4,10 +4,13 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Content;
+use App\Enum\ContentTypeEnum;
+use App\Enum\ContentVisibilityEnum;
 use App\Form\Type\EditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,6 +29,20 @@ final class ContentType extends AbstractType
             ->add('published', CheckboxType::class, [
               'required' => false,
               'label' => 'content.published',
+            ])
+            ->add('type', EnumType::class, [
+              'label' => 'content.type',
+              'class' => ContentTypeEnum::class,
+              'autocomplete' => true,
+              'required' => true,
+              'choice_label' => static fn (ContentTypeEnum $type): string => 'type.'.$type->value,
+            ])
+            ->add('visibility', EnumType::class, [
+              'label' => 'content.visibility',
+              'class' => ContentVisibilityEnum::class,
+              'autocomplete' => true,
+              'required' => true,
+              'choice_label' => static fn (ContentVisibilityEnum $visibility): string => 'visibility.'.$visibility->value,
             ])
             ->add('categories', EntityType::class, [
               'label' => 'content.categories',

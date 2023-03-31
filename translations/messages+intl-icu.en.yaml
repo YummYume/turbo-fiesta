@@ -215,6 +215,16 @@ content.type: Type
 content.published: Published
 content.visibility: Visibility
 
+## Type
+type.article: Article
+type.formation: Formation
+type.other: Other
+
+## Visibility
+visibility.ROLE_ADMIN: Employe
+visibility.ROLE_MEMBER: Customer
+visibility.ROLE_USER: Public
+
 ## Category
 category.name: Name
 

@@ -215,6 +215,16 @@ content.type: Type
 content.published: Publié
 content.visibility: Visibilité
 
+## Type
+type.article: Article
+type.formation: Formation
+type.other: Autre
+
+## Visibility
+visibility.ROLE_ADMIN: Employé
+visibility.ROLE_MEMBER: Adhérent
+visibility.ROLE_USER: Public
+
 ## Category
 category.name: Nom
 
