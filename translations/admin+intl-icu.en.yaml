@@ -16,6 +16,9 @@ common.save: Save
 common.go_back: Go back
 common.delete.cannot_be_undone: This cannot be undone.
 
+# Icon
+icon.add_circle: Add
+
 # Flahshes
 ## Common
 flash.common.created: Created successfully.

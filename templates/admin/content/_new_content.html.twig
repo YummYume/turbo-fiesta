@@ -2,6 +2,4 @@
 
 {% include "admin/content/_form.html.twig" with { form, button_label: "common.create"|trans, notificationEmailDisabled: false, editing: false } only %}
 
-<div class="flex w-full items-center justify-center gap-6">
-    {{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}
-</div>
+{{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}

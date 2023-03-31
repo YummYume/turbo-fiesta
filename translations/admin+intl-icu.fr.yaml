@@ -16,6 +16,9 @@ common.save: Sauvegarder
 common.go_back: Retour en arrière
 common.delete.cannot_be_undone: Cette action est irréversible.
 
+# Icon
+icon.add_circle: Ajouter
+
 # Flahshes
 ## Common
 flash.common.updated: Mis à jour avec succés.

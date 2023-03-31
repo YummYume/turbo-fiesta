@@ -34,7 +34,7 @@
                         </li>
                     {% else %}
                         <li>
-                            <span class="px-3 py-2 leading-tight border border-neutral-400 bg-neutral-100 text-neutral-700 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100" aria-label="{{ "common.current_page"|trans({ number: p }) }}">{{ p }}</span>
+                            <span class="{{ page == 1 ? 'rounded-l-lg' }} {{ page == pages ? 'rounded-r-lg' }} px-3 py-2 leading-tight border border-neutral-400 bg-neutral-100 text-neutral-700 dark:border-neutral-700 dark:bg-neutral-700 dark:text-neutral-100" aria-label="{{ "common.current_page"|trans({ number: p }) }}">{{ p }}</span>
                         </li>
                     {% endif %}
                 {% endif %}
@@ -52,7 +52,7 @@
                 </li>
             {% else %}
                 <li>
-                    <span class="px-3 py-2 leading-tight bg-neutral-100 border border-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100" aria-label="{{ "common.current_page"|trans({ number: page }) }}">{{ page }}</span>
+                    <span class="{{ page == 1 ? 'rounded-l-lg' }} {{ page == pages ? 'rounded-r-lg' }} px-3 py-2 leading-tight bg-neutral-100 border border-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-100" aria-label="{{ "common.current_page"|trans({ number: page }) }}">{{ page }}</span>
                 </li>
             {% endif %}
 
