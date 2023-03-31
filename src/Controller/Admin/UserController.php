@@ -18,6 +18,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\UX\Turbo\TurboBundle;
 
+#[Route('/user')]
 final class UserController extends AbstractController
 {
     public function __construct(
@@ -27,7 +28,7 @@ final class UserController extends AbstractController
     ) {
     }
 
-    #[Route('/users', name: 'admin_user', methods: ['GET', 'POST'])]
+    #[Route('/user', name: 'admin_user', methods: ['GET', 'POST'])]
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $pagination = $paginator->paginate(
@@ -116,7 +117,7 @@ final class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_user_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'admin_user_delete', methods: ['POST'])]
     #[IsGranted(UserVoter::DELETE, subject: 'user', statusCode: 403)]
     public function delete(Request $request, User $user, UserRepository $userRepository, SecurityEmailManager $securityEmailManager): Response
     {
@@ -164,7 +165,7 @@ final class UserController extends AbstractController
 
     // TODO use sprintf for condition when php-cs-fixer supports PHP 8.2
     #[Route(
-        '/users/{id}/verify',
+        '/{id}/verify',
         name: 'admin_user_verify',
         methods: ['POST'],
         condition: ('"'.TurboBundle::STREAM_FORMAT.'" === request.getPreferredFormat()')

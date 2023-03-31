@@ -37,7 +37,6 @@ flash.content.notification_email_sent: >-
         other {# notifications envoyées.}
     }
 flash.content.not_published: Ce contenu n'est pas publié.
-
 # Pages
 ## Page d'accueil
 page.homepage.title: Page d'accueil de l'administration
@@ -80,6 +79,20 @@ page.content_edit.send_notification_email: Envoyer les notifications
 ### Delete
 page.content_delete.title: Supprmier le contenu
 page.content_delete.content: Voulez-vous vraiment supprimer ce contenu?
+
+## Category
+### List
+page.category.title: Catégories
+
+### New
+page.category_new.title: Nouvelle catégorie
+
+### Edit
+page.category_edit.title: Modifier la catégorie
+
+### Delete
+page.category_delete.title: Supprimer la catégorie
+page.category_delete.content: Voulez-vous vraiment supprimer cette catégorie?
 
 # Flashes
 ## User

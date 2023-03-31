@@ -21,3 +21,6 @@ content.title: Titre
 content.published: Publié
 content.unpublished: Non publié
 content.categories: Catégories
+
+# Categories
+category.name: Nom

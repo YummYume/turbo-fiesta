@@ -45,6 +45,12 @@ final class MenuBuilder
                 'icon' => 'contents',
             ],
         ]);
+        $menu->addChild('back_office.categories', [
+            'route' => 'admin_category',
+            'extras' => [
+                'icon' => 'category',
+            ],
+        ]);
 
         return $menu;
     }
