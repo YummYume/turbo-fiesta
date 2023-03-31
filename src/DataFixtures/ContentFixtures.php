@@ -25,7 +25,7 @@ final class ContentFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
         $caddie = (new Content())
-            ->addCategory($this->getReference(CategoryFixtures::REFERENCE_IDENTIFIER.(array_search('Caddie', CategoryFixtures::FIXTURE_DATA, true) - 1)))
+            ->addCategory($this->getReference(CategoryFixtures::REFERENCE_IDENTIFIER.array_search('Caddie', CategoryFixtures::FIXTURE_DATA, true)))
             ->setTitle('Nouveau Caddie très puissant en vente')
             ->setBlocks(json_decode('{"time":1680182022973,"blocks":[{"id":"4O4EkNTkqy","type":"paragraph","data":{"text":"Nouveau Caddy!"},"tunes":{"textVariant":""}},{"id":"O61k29N1is","type":"image","data":{"url":"https://thumbs.dreamstime.com/b/caddie-avec-le-burning-du-feu-73113614.jpg","caption":"Caddie nouvelle génération","withBorder":false,"withBackground":false,"stretched":false}}],"version":"2.26.5"}', true))
             ->setPublished(true)

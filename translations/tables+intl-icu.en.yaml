@@ -9,6 +9,7 @@ user.verified: Verified
 user.roles: Roles
 user.description: Description
 user.picture: Picture
+user.categories: Categories
 user.role.role_super_admin: Super admin
 user.role.role_admin: Employee
 user.role.role_member: Member

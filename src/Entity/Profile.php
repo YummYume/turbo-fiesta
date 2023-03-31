@@ -154,6 +154,11 @@ class Profile
         return $this->messages;
     }
 
+    public function getUnreadMessages(): Collection
+    {
+        return $this->messages->filter(static fn (Message $message): bool => !$message->isViewed());
+    }
+
     public function addMessage(Message $message): self
     {
         if (!$this->messages->contains($message)) {

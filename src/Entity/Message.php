@@ -33,7 +33,7 @@ class Message
     #[ORM\JoinColumn(nullable: false)]
     private ?Profile $profile = null;
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }

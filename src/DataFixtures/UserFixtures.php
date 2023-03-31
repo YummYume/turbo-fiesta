@@ -32,6 +32,7 @@ final class UserFixtures extends Fixture implements DependentFixtureInterface
             ->setUsername('Root')
             ->setDescription('Super cool')
             ->setPicture($adminPicture)
+            ->addCategory($this->getReference(CategoryFixtures::REFERENCE_IDENTIFIER.(\count(CategoryFixtures::FIXTURE_DATA) - 1)))
         ;
         $admin = (new User())
             ->setEmail('root@root.com')
@@ -55,6 +56,11 @@ final class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setVerified(true)
                 ->setProfile($profile)
             ;
+            $categories = $faker->randomElements(range(0, \count(CategoryFixtures::FIXTURE_DATA) - 1), 3);
+
+            foreach ($categories as $category) {
+                $profile->addCategory($this->getReference(CategoryFixtures::REFERENCE_IDENTIFIER.$category));
+            }
 
             $manager->persist($user);
             $this->addReference(self::REFERENCE_IDENTIFIER.$i, $user);
@@ -72,6 +78,7 @@ final class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             PreparePicturesFixtures::class,
+            CategoryFixtures::class,
         ];
     }
 }

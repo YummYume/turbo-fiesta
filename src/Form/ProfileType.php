@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Profile;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,6 +27,14 @@ final class ProfileType extends AbstractType
                 'attr' => [
                     'rows' => 4,
                 ],
+            ])
+            ->add('categories', EntityType::class, [
+                'label' => 'user.categories',
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'translation_domain' => 'tables',
+                'multiple' => true,
+                'autocomplete' => true,
             ])
             ->add('picture', ProfilePictureType::class, [
                 'label' => false,
