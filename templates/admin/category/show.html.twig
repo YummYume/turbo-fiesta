@@ -1,0 +1,81 @@
+{% extends "admin/layout.html.twig" %}
+
+{% trans_default_domain "admin" %}
+
+{% block title %}
+    {{ category.name }}
+{% endblock %}
+
+{% block main_title %}
+    {{ category.name }}
+{% endblock %}
+
+{% block main_body %}
+    <div class="relative overflow-x-auto w-full">
+        <table class="w-full text-sm text-left">
+            <tbody>
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {{ "common.id"|trans }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ category.id }}
+                    </td>
+                </tr>
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {{ "category.name"|trans({}, "tables") }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ category.name }}
+                    </td>
+                </tr>
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {{ "common.created_at"|trans }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ category.createdAt ? category.createdAt|format_datetime : "" }}
+                    </td>
+                </tr>
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {{ "common.updated_at"|trans }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ category.updatedAt ? category.updatedAt|format_datetime : "" }}
+                    </td>
+                </tr>
+                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {{ "common.created_by"|trans }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {% if category.createdBy %}
+                            <a href="{{ path("admin_user_show", { id: category.createdBy.id.toBase32 }) }}">
+                                {{ category.createdBy.profile.username }}
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr class="bg-neutral-100 dark:bg-neutral-800">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                        {{ "common.updated_by"|trans }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {% if category.updatedBy %}
+                            <a href="{{ path("admin_user_show", { id: category.updatedBy.id.toBase32 }) }}">
+                                {{ category.updatedBy.profile.username }}
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="btn-group items-center justify-center">
+        {{ component("button", { button: false, content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_category") }) }}
+        {{ component("button", { button: false, content: "common.edit"|trans, class: "btn-outline", variant: "success", centered: false, ghost: true, href: path("admin_category_edit", { id: category.id.toBase32 }) }) }}
+    </div>
+{% endblock %}

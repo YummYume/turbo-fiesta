@@ -1,0 +1,21 @@
+{% extends "admin/layout.html.twig" %}
+
+{% trans_default_domain "admin" %}
+
+{% block title %}
+    {{ "page.category_new.title"|trans }}
+{% endblock %}
+
+{% block main_title %}
+    {{ "page.category_new.title"|trans }}
+{% endblock %}
+
+{% block main_body %}
+    <div class="mx-auto flex max-w-4xl flex-col gap-4">
+        {% include "admin/category/_form.html.twig" %}
+
+        <div class="flex w-full items-center justify-center gap-6">
+            {{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_category") }) }}
+        </div>
+    </div>
+{% endblock %}
