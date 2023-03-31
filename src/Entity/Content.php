@@ -197,4 +197,18 @@ class Content
 
         return $this;
     }
+
+    public function getNotifiedProfiles(): array
+    {
+        $profiles = [];
+
+        /** @var Message $message */
+        foreach ($this->messages as $message) {
+            if (!\in_array($message->getProfile(), $profiles, true)) {
+                $profiles[] = $message->getProfile();
+            }
+        }
+
+        return $profiles;
+    }
 }
