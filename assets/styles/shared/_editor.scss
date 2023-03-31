@@ -1,13 +1,17 @@
 .editor {
-    @apply p-4 prose rounded shadow-lg dark:bg-gray-800;
+    @apply p-4 prose rounded shadow-lg dark:bg-neutral-800;
 
     ::selection {
-        @apply bg-primary-400;
+        @apply bg-secondary-400;
     }
 }
 
 .prose {
-    @apply dark:text-white;
+    @apply dark:text-neutral-100;
+
+    blockquote {
+        @apply dark:text-neutral-100;
+    }
 }
 
 .codex-editor__redactor {
@@ -16,23 +20,19 @@
 
 .cdx {
     &-block {
-        @apply dark:text-white;
-    }
-
-    &-input {
-        @apply dark:border-white dark:text-white;
+        @apply dark:text-neutral-100;
     }
 }
 
 .ce {
     &-block {
         &--selected &__content {
-            @apply dark:bg-gray-700;
+            @apply dark:bg-neutral-700;
         }
     }
 
     &-header {
-        @apply dark:text-white;
+        @apply dark:text-neutral-100;
     }
 
     &-toolbar {
@@ -48,7 +48,7 @@
     @media (min-width: 651px) {
         &-toolbar {
             &__plus, &__settings-btn {
-                @apply dark:text-white dark:hover:text-black;
+                @apply dark:text-neutral-100 dark:hover:text-black;
             }
         }
     }

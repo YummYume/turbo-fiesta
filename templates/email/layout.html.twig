@@ -12,8 +12,8 @@
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <div class="min-w-screen flex min-h-screen items-center justify-center bg-blue-100 p-5">
-            <div class="max-w-xl rounded-3xl bg-white p-8 text-center text-gray-800 shadow-xl lg:max-w-3xl lg:p-12">
+        <div class="min-w-screen flex min-h-screen items-center justify-center bg-secondary-100 p-5">
+            <div class="max-w-xl rounded-3xl bg-neutral-100 p-8 text-center text-neutral-800 shadow-xl lg:max-w-3xl lg:p-12">
                 <h1 class="text-2xl">
                     {% block title %}
                         {% if title is defined %}
@@ -23,7 +23,7 @@
                 </h1>
                 <div class="flex justify-center">
                     {% block icon %}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="1"
@@ -39,7 +39,7 @@
                 <div class="mt-4">
                     {% block button %}
                         {% if button_link is defined and button_text is defined %}
-                            <a href="{{ button_link }}" class="btn btn-accent btn-active text-white">{{ button_text }}</a>
+                            <a href="{{ button_link }}" class="btn btn-accent btn-active text-neutral-100">{{ button_text }}</a>
                         {% endif %}
                     {% endblock %}
                     <p class="mt-4 text-sm">
