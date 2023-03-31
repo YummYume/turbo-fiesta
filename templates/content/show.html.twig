@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-
+    {{ content.title }}
 {% endblock %}
 
 {% block description %}
@@ -9,12 +9,25 @@
 {% endblock %}
 
 {% block main_title %}
-
+    {{ content.title }}
 {% endblock %}
 
 {% block main_body %}
-    <div class="mx-auto" {{ stimulus_controller("editor-parser") }} data-editor-parser-data-value="{{ content.blocks|json_encode }}">
-        <div class="cdx-loader min-h-[300px]" data-editor-parser-target="loading"></div>
-        <div class="prose" data-editor-parser-target="content"></div>
-    </div>
+    <section class="flex flex-col gap-4 mx-auto">
+        <div class="flex gap-2">
+            <div class="bg-purple-200 text-xs font-medium px-2.5 py-0.5 rounded-full w-max dark:bg-purple-700">
+                {{ content.type.name }}
+            </div>
+
+            {% for category in content.categories.toArray() %}
+                <div class="bg-corail-200 text-xs font-medium px-2.5 py-0.5 rounded-full w-max dark:bg-corail-700">
+                    {{ category.name }}
+                </div>
+            {% endfor %}
+        </div>
+        <div {{ stimulus_controller("editor-parser") }} data-editor-parser-data-value="{{ content.blocks|json_encode }}">
+            <div class="cdx-loader min-h-[300px]" data-editor-parser-target="loading"></div>
+            <div class="prose" data-editor-parser-target="content"></div>
+        </div>
+    </section>
 {% endblock %}
