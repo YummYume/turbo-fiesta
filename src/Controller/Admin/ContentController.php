@@ -55,7 +55,7 @@ final class ContentController extends AbstractController
           'pagination' => $pagination,
       ];
 
-      return $this->render('admin/content/index.html.twig', ['config' => $config]);
+        return $this->render('admin/content/index.html.twig', ['config' => $config]);
     }
 
     #[Route('/new', name: 'admin_content_new', methods: ['GET', 'POST'])]
@@ -125,6 +125,20 @@ final class ContentController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'admin_content_delete', methods: ['POST'])]
+    public function delete(Request $request, Content $content): Response
+    {
+        if ($this->isCsrfTokenValid('delete-'.$content->getId()->toBase32(), $request->request->get('_token'))) {
+            $this->contentRepository->remove($content, true);
+
+            $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.common.deleted', translationDomain: 'admin');
+        } else {
+            $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_csrf');
+        }
+
+        return $this->redirectToRoute('admin_content', status: Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}/send-notification', name: 'admin_content_send_notification', methods: ['POST'])]
     public function sendValidationEmail(Request $request, Content $content, MessageManager $messageManager): Response
     {
@@ -133,7 +147,7 @@ final class ContentController extends AbstractController
                 $notifCount = $messageManager->createMessagesForContent($content, true);
 
                 $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.content.notification_email_sent', [
-                    'notifCount' =>  $notifCount,
+                    'notifCount' => $notifCount,
                 ], translationDomain: 'admin');
             } else {
                 $this->flashManager->flash(ColorTypeEnum::Warning->value, 'flash.content.not_published', translationDomain: 'admin');

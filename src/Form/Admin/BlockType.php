@@ -25,7 +25,7 @@ final class BlockType extends AbstractType
             ])
             ->add('published', CheckboxType::class, [
               'required' => false,
-              'label' => 'content.published'
+              'label' => 'content.published',
             ])
             ->add('categories', EntityType::class, [
               'label' => 'content.categories',
@@ -36,13 +36,12 @@ final class BlockType extends AbstractType
               'autocomplete' => true,
               'required' => true,
           ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-          'data_class' => Content::class
+          'data_class' => Content::class,
         ]);
     }
 }

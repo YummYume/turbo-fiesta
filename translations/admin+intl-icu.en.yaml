@@ -31,7 +31,11 @@ flash.user.validation_email_sent: Validation email sent.
 flash.user.already_verified: This user is already verified.
 
 ## Content
-flash.content.notification_email_sent: ({ notifCount }) Notification email(s) sent.
+flash.content.notification_email_sent: >-
+    {notifCount, plural,
+        =0 {No notification sent.}
+        one {1 notification sent.}
+        other {# notifications sent.}
 flash.content.not_published: This content isn't published.
 
 # Pages
@@ -71,7 +75,7 @@ page.content_new.title: New content
 ### Edit
 page.content_edit.title: Edit content
 page.content_edit.description: Edit a content's information.
-page.content_edit.send_notification_email: Send notification email (in English)
+page.content_edit.send_notification_email: Send notifications
 
 ### Delete
 page.content_delete.title: Delete content

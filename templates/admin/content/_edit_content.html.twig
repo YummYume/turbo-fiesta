@@ -5,7 +5,5 @@
 
 <div class="flex w-full items-center justify-center gap-6">
     {{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}
-    {% if is_granted(constant("App\\Security\\Voter\\ContentVoter::DELETE"), content) %}
-        {# {% include "admin/content/_delete_form.html.twig" with { content } only %} #}
-    {% endif %}
+    {% include "admin/content/_delete_form.html.twig" with { content } only %}
 </div>
