@@ -12,17 +12,17 @@
             {{ component("avatar", { user: app.user, permanent, id: "user-picture" }) }}
         </button>
         <div
-            class="hidden z-50 my-4 w-56 text-base list-none bg-neutral-100 rounded divide-y divide-neutral-100 shadow dark:bg-neutral-800 dark:divide-neutral-600"
+            class="hidden z-50 my-4 w-56 text-base list-none bg-neutral-100 rounded divide-y divide-neutral-400 shadow dark:bg-neutral-800 dark:divide-neutral-600"
             data-dropdown-target="dropdown"
         >
             <div class="py-3 px-4">
-                <span class="block text-sm font-semibold text-neutral-900 dark:text-neutral-100">{{ app.user.profile.username }}</span>
+                <span class="block text-sm font-semibold">{{ app.user.profile.username }}</span>
                 <span class="block text-sm font-light truncate">{{ app.user.email }}</span>
             </div>
             <ul class="py-1 font-light" aria-labelledby="dropdown">
                 <li>
                     <a
-                        class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
+                        class="flex items-center py-2 px-4 text-sm hover:bg-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                         href="{{ path("app_profile_show", { slug: app.user.profile.slug }) }}"
                     >
                         {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'user-circle' }) }}
@@ -31,7 +31,7 @@
                 </li>
                 <li>
                     <a
-                        class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
+                        class="flex items-center py-2 px-4 text-sm hover:bg-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                         href="{{ path("app_edit_profile") }}"
                     >
                         {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'cog' }) }}
@@ -44,7 +44,7 @@
                 <ul class="py-1 font-light" aria-labelledby="dropdown">
                     <li>
                         <a
-                            class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
+                            class="flex items-center py-2 px-4 text-sm hover:bg-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                             href="{{ path("admin_homepage") }}"
                         >
                             {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'wrench' }) }}
@@ -57,7 +57,7 @@
             <ul class="py-1 font-light" aria-labelledby="dropdown">
                 <li>
                     <a
-                        class="flex items-center py-2 px-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
+                        class="flex items-center py-2 px-4 text-sm hover:bg-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-100"
                         href="{{ path("security_logout") }}"
                     >
                         {{ component('icon', { class: 'h-5 w-5 mr-2', icon: 'log-out' }) }}
