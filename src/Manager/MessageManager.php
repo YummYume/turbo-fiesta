@@ -17,12 +17,15 @@ final class MessageManager
     ) {
     }
 
-    public function createMessagesForContent(Content $content, bool $withEmail = true): void
+    public function createMessagesForContent(Content $content, bool $withEmail = true): int
     {
+        $notifiedProfiles = $content->getNotifiedProfiles();
+        $notified = 0;
+
         /** @var Category $category */
         foreach ($content->getCategories() as $category) {
             /** @var Profile $profile */
-            foreach ($category->getProfiles() as $profile) {
+            foreach ($category->getProfiles()->filter(static fn (Profile $profile): bool => !\in_array($profile, $notifiedProfiles, true)) as $profile) {
                 $message = (new Message())
                     ->setContent($content)
                     ->setProfile($profile)
@@ -33,7 +36,11 @@ final class MessageManager
                 if ($withEmail) {
                     $this->contentEmailManager->sendNewContentEmail($content, $profile->getUser()->getEmail());
                 }
+
+                ++$notified;
             }
         }
+
+        return $notified;
     }
 }
