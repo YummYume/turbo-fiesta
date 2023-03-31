@@ -46,7 +46,7 @@ class Content
     private array $blocks = [];
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'contents')]
-    #[Assert\Count(min: 1, message: 'content.categories.min_count')]
+    #[Assert\Count(min: 1, minMessage: 'content.categories.min_count')]
     private Collection $categories;
 
     #[ORM\Column(length: 255, enumType: ContentTypeEnum::class)]

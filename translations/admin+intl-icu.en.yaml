@@ -30,6 +30,14 @@ page.admin.description: The administration for MyApp
 flash.user.validation_email_sent: Validation email sent.
 flash.user.already_verified: This user is already verified.
 
+## Content
+flash.content.notification_email_sent: >-
+    {notifCount, plural,
+        =0 {No notification sent.}
+        one {1 notification sent.}
+        other {# notifications sent.}
+flash.content.not_published: This content isn't published.
+
 # Pages
 ## Homepage
 page.homepage.title: Administration homepage
@@ -56,7 +64,28 @@ page.user_edit.send_validation_email: Send validation email (in English)
 page.user_delete.title: Delete user
 page.user_delete.content: Are you sure you want to delete this user?
 
+## Content
+### List
+page.content.title: Contents
+page.content.description: List of contents created on the website.
+
+### New
+page.content_new.title: New content
+
+### Edit
+page.content_edit.title: Edit content
+page.content_edit.description: Edit a content's information.
+page.content_edit.send_notification_email: Send notifications
+
+### Delete
+page.content_delete.title: Delete content
+page.content_delete.content: Are you sure you want to delete this content?
+
 # Flashes
 ## User
 flash.user.verified: User { email } is now verified.
 flash.user.unverified: User { email } is now unverified.
+
+## Content
+flash.content.published: Content { title } is now published.
+flash.content.unpublished: Content { title } is now unpublished.

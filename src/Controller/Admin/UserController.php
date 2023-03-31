@@ -169,7 +169,6 @@ final class UserController extends AbstractController
         methods: ['POST'],
         condition: ('"'.TurboBundle::STREAM_FORMAT.'" === request.getPreferredFormat()')
     )]
-    #[IsGranted(UserVoter::EDIT, subject: 'user', statusCode: 403)]
     public function setUserVerified(User $user, Request $request): Response
     {
         $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
