@@ -31,6 +31,7 @@ common.switch_language: Switch language
 common.view_notifications: View notifications
 common.notifications: Notifications
 common.dismiss_notification: Dismiss notification
+common.no_notification: Nothing to see here.
 
 # Icons
 icon.eye: Show

@@ -31,6 +31,7 @@ common.switch_language: Changer de langue
 common.view_notifications: Afficher les notifications
 common.notifications: Notifications
 common.dismiss_notification: Ignorer la notification
+common.no_notification: Rien à signaler.
 
 ## Icons
 icon.eye: Afficher
@@ -39,7 +40,7 @@ icon.pencil: Modifier
 # Flashes
 ## Common
 flash.common.invalid_form: Formulaire non valide. Veuillez réessayer.
-flash.common.invalid_csrf: jeton CSRF non valide. Veuillez réessayer.
+flash.common.invalid_csrf: Jeton CSRF non valide. Veuillez réessayer.
 
 ## Register email
 flash.register.email_sent: Merci de vous être enregistré. Nous vous avons envoyé un email pour vérifier votre compte.

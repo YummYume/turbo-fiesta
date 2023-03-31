@@ -21,5 +21,13 @@
 {% endblock %}
 
 {% block remove %}
-    <turbo-stream action="remove" target="message-{{ id }}"></turbo-stream>
+    {% if entity.profile.messages is empty %}
+        <turbo-stream action="replace" target="message-{{ id }}">
+            <template>
+                <span class="text-center text-sm mt-2 text-neutral-600 dark:text-neutral-400">{{ 'common.no_notification'|trans }}</span>
+            </template>
+        </turbo-stream>
+    {% else %}
+        <turbo-stream action="remove" target="message-{{ id }}"></turbo-stream>
+    {% endif %}
 {% endblock %}
