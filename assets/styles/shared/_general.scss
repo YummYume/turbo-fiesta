@@ -19,7 +19,7 @@ textarea {
 }
 
 button {
-    @apply disabled:bg-neutral-500 disabled:text-neutral-100 dark:disabled:bg-neutral-600 dark:disabled:text-neutral-500 #{!important};
+    @apply disabled:cursor-not-allowed disabled:bg-neutral-500 disabled:text-neutral-100 dark:disabled:bg-neutral-600 dark:disabled:text-neutral-500 #{!important};
 }
 
 :focus {

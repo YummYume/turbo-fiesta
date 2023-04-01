@@ -1,37 +1,49 @@
-<label for="{{ id }}" class="mx-auto flex">{{ deleteLabel }}</label>
-
-<input type="checkbox" id="{{ id }}" />
-<label class="cursor-pointer sm:modal-middle" for="{{ id }}">
-    <label class="relative" for="">
+{% component modal
+    with
+    {
+        title: title,
+        modalId: id,
+        openButtonText: deleteLabel,
+        openButtonClass: "!bg-danger hover:!bg-danger/80 transition-all",
+        closeButtonText: closeLabel,
+    }
+%}
+    {% block modal_box %}
         <form method="post" action="{{ action }}" {{ stimulus_controller("input-prompt") }} data-input-prompt-prompt-value="{{ prompt }}">
-            {% block body %}
-                {% block title %}
-                    <h3 class="text-lg font-bold">
-                        {{ title }}
-                    </h3>
-                {% endblock %}
-                {% block content %}
-                    <p class="py-4">
-                        <span>{{ content }}</span>
-                        {% if warningMessage %}
-                            <strong>{{ warningMessage }}</strong>
-                        {% endif %}
-                    </p>
-                {% endblock %}
-            {% endblock %}
-            {% if prompt %}
-                <div>
-                    <label for="input-prompt" class="label"><span class="label-text">{{ "component.deletion_prompt_modal.label"|trans({ prompt }) }}</span></label>
-                    <textarea data-action="input->input-prompt#onInput" type="text" name="input" id="input-prompt" class="max-h-24 w-full" required></textarea>
-                </div>
-            {% endif %}
-            {% if token %}
-                <input type="hidden" name="_token" value="{{ token }}" />
-            {% endif %}
-            <div class="flex justify-center gap-4">
-                <label for="{{ id }}">{{ closeLabel }}</label>
-                <button data-input-prompt-target="button" id="input-prompt-button" type="submit">{{ deleteLabel }}</button>
-            </div>
+            {{ parent() }}
         </form>
-    </label>
-</label>
+    {% endblock %}
+
+    {% block title %}
+        {{ title }}
+    {% endblock %}
+
+    {% block content %}
+        <p class="pb-4">
+            <span>{{ content }}</span>
+            {% if warningMessage %}
+                <strong>{{ warningMessage }}</strong>
+            {% endif %}
+        </p>
+        {% if prompt %}
+            <div>
+                <label for="input-prompt" class="label"><span class="label-text">{{ "component.deletion_prompt_modal.label"|trans({ prompt }) }}</span></label>
+                <textarea data-action="input->input-prompt#onInput" type="text" name="input" id="input-prompt" class="max-h-24 w-full" required></textarea>
+            </div>
+        {% endif %}
+        {% if token %}
+            <input type="hidden" name="_token" value="{{ token }}" />
+        {% endif %}
+    {% endblock %}
+
+    {% block modal_action %}
+        {{ parent() }}
+        {{ component("button", {
+            id: "input-prompt-button",
+            content: deleteLabel,
+            submit: true,
+            class: "!bg-danger hover:!bg-danger/80 transition-all",
+            'data-input-prompt-target': 'button',
+        }) }}
+    {% endblock %}
+{% endcomponent %}
