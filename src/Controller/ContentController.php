@@ -101,7 +101,7 @@ final class ContentController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}', name: 'app_content_show', methods: ['GET', 'POST'])]
+    #[Route('/show/{slug}', name: 'app_content_show', methods: ['GET', 'POST'])]
     #[IsGranted(ContentVoter::VIEW, 'content')]
     public function show(Content $content): Response
     {
@@ -110,7 +110,7 @@ final class ContentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'content_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'content_edit', methods: ['GET', 'POST'])]
     #[IsGranted(ContentVoter::EDIT, subject: 'content', statusCode: 403)]
     public function edit(Request $request, Content $content): Response
     {
@@ -145,7 +145,7 @@ final class ContentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/', name: 'content_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'content_delete', methods: ['POST'])]
     #[IsGranted(ContentVoter::DELETE, subject: 'content', statusCode: 403)]
     public function delete(Request $request, Content $content): Response
     {
@@ -160,7 +160,7 @@ final class ContentController extends AbstractController
         return $this->redirectToRoute('content', status: Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/send-notification', name: 'content_send_notification', methods: ['POST'])]
+    #[Route('/send-notification/{id}', name: 'content_send_notification', methods: ['POST'])]
     #[IsGranted(ContentVoter::EDIT, subject: 'content', statusCode: 403)]
     public function sendValidationEmail(Request $request, Content $content, MessageManager $messageManager): Response
     {
@@ -190,7 +190,7 @@ final class ContentController extends AbstractController
     }
 
     #[Route(
-        '/{id}/published',
+        '/published/{id}',
         name: 'content_publish',
         methods: ['POST'],
         condition: ('"'.TurboBundle::STREAM_FORMAT.'" === request.getPreferredFormat()')
