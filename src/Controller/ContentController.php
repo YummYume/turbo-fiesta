@@ -174,7 +174,7 @@ final class ContentController extends AbstractController
             if ($content->isPublished()) {
                 $notifCount = $messageManager->createMessagesForContent($content, true);
 
-                $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.content.notification_email_sent', [
+                $this->flashManager->flash($notifCount > 0 ? ColorTypeEnum::Success->value : ColorTypeEnum::Info->value, 'flash.content.notification_email_sent', [
                     'notifCount' => $notifCount,
                 ]);
             } else {

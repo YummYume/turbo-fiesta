@@ -8,20 +8,19 @@
         closeButtonText: "common.go_back"|trans,
     }
 %}
+    {% block content %}
+        {{ "page.content_delete.content"|trans }} <strong class="text-red-600">{{ "common.delete.cannot_be_undone"|trans }}</strong>
+    {% endblock %}
 
-{% block content %}
-    {{ "page.content_delete.content"|trans }} <strong class="text-red-600">{{ "common.delete.cannot_be_undone"|trans }}</strong>
-{% endblock %}
-
-{% block modal_action %}
-    {{ parent() }}
-    {{ component("button", { id: "delete-content", content: "common.delete"|trans, submit: true, class: "!bg-danger hover:!bg-danger/80 transition-all" }) }}
-{% endblock %}
-
-{% block modal_box %}
-    <form method="post" action="{{ path("content_delete", { id: content.id.toBase32 }) }}">
-        <input type="hidden" name="_token" value="{{ csrf_token("delete-" ~ content.id.toBase32) }}" />
+    {% block modal_action %}
         {{ parent() }}
-    </form>
-{% endblock %}
+        {{ component("button", { id: "delete-content", content: "common.delete"|trans, submit: true, class: "!bg-danger hover:!bg-danger/80 transition-all" }) }}
+    {% endblock %}
+
+    {% block modal_box %}
+        <form method="post" action="{{ path("content_delete", { id: content.id.toBase32 }) }}">
+            <input type="hidden" name="_token" value="{{ csrf_token("delete-" ~ content.id.toBase32) }}" />
+            {{ parent() }}
+        </form>
+    {% endblock %}
 {% endcomponent %}
