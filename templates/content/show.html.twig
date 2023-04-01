@@ -15,13 +15,13 @@
 {% block main_body %}
     <section class="flex flex-col gap-8 mx-auto">
         {% if content.createdBy %}
-            <span class="flex items-center gap-2">
+            <a href="{{ path('app_profile_show', { slug: content.createdBy.profile.slug }) }}" class="flex items-center gap-2">
                 <div>
                     {{ component("avatar", { user: content.createdBy }) }}
                 </div>
 
                 {{ content.createdBy.profile.username }}
-            </span>
+            </a>
         {% endif %}
 
         <div class="flex gap-2">
