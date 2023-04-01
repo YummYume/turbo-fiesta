@@ -30,7 +30,7 @@ class ContentVoter extends Voter
         $user = $token->getUser();
 
         return match ($attribute) {
-            self::VIEW => $this->canView($subject),
+            self::VIEW => $this->canView($subject, $user),
             self::CREATE => $this->canCreate(),
             self::EDIT => $this->canEdit($subject, $user),
             self::DELETE => $this->canDelete($subject, $user),
@@ -41,8 +41,12 @@ class ContentVoter extends Voter
     /**
      * @internal Only users with enough visibility privilege can view the content
      */
-    private function canView(Content $subject): bool
+    private function canView(Content $subject, ?UserInterface $currentUser): bool
     {
+        if ($subject->getCreatedBy() === $currentUser) {
+            return true;
+        }
+
         if (!$subject->isPublished()) {
             return false;
         }
@@ -61,7 +65,7 @@ class ContentVoter extends Voter
     /**
      * @internal Only the user who created the content can edit it
      */
-    private function canEdit(Content $subject, UserInterface $currentUser): bool
+    private function canEdit(Content $subject, ?UserInterface $currentUser): bool
     {
         return $this->canCreate() && $subject->getCreatedBy() === $currentUser;
     }
@@ -69,7 +73,7 @@ class ContentVoter extends Voter
     /**
      * @internal Only the user who created the content can delete it
      */
-    private function canDelete(Content $subject, UserInterface $currentUser): bool
+    private function canDelete(Content $subject, ?UserInterface $currentUser): bool
     {
         return $this->canCreate() && $subject->getCreatedBy() === $currentUser;
     }

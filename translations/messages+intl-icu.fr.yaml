@@ -45,7 +45,7 @@ common.my_menu: Mon menu
 common.messages: Messages
 common.documentation: Documentation
 common.help: Aide
-common.content.create: Crée du contenu
+common.content.create: Créer du contenu
 common.delete.cannot_be_undone: Cette action est irréversible.
 
 ## Icons
@@ -68,7 +68,6 @@ flash.content.notification_email_sent: >-
         other {# notifications envoyées.}
     }
 flash.content.not_published: Ce contenu n'est pas publié.
-
 ## Register email
 flash.register.email_sent: Merci de vous être enregistré. Nous vous avons envoyé un email pour vérifier votre compte.
 flash.register.link_expired: Ce lien a expiré. Un nouveau est en route vers votre adresse email !

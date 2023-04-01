@@ -6,9 +6,8 @@
         title: "page.user_delete.title"|trans,
         modalId: "delete-user-modal",
         openButtonText: "common.delete"|trans,
-        openButtonClass: "!bg-danger",
+        openButtonClass: "!bg-danger hover:!bg-danger/80 transition-all",
         closeButtonText: "common.go_back"|trans,
-        closeButtonClass: "!bg-success mx-0"
     }
 %}
 {% trans_default_domain "admin" %}
@@ -19,7 +18,7 @@
 
 {% block modal_action %}
     {{ parent() }}
-    {{ component("button", { id: "delete-user", content: "common.delete"|trans, submit: true, class: "!bg-danger" }) }}
+    {{ component("button", { id: "delete-user", content: "common.delete"|trans, submit: true, class: "!bg-danger hover:!bg-danger/80 transition-all" }) }}
 {% endblock %}
 
 {% block modal_box %}

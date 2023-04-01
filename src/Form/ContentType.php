@@ -21,44 +21,45 @@ final class ContentType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-              'label' => 'content.title',
+                'label' => 'content.title',
             ])
             ->add('blocks', EditorType::class, [
-              'label' => false,
+                'label' => 'content.blocks',
             ])
             ->add('published', CheckboxType::class, [
-              'required' => false,
-              'label' => 'content.published',
+                'required' => false,
+                'label' => 'content.published',
             ])
             ->add('type', EnumType::class, [
-              'label' => 'content.type',
-              'class' => ContentTypeEnum::class,
-              'autocomplete' => true,
-              'required' => true,
-              'choice_label' => static fn (ContentTypeEnum $type): string => 'type.'.$type->value,
+                'label' => 'content.type',
+                'class' => ContentTypeEnum::class,
+                'autocomplete' => true,
+                'required' => true,
+                'choice_label' => static fn (ContentTypeEnum $type): string => 'type.'.$type->value,
             ])
             ->add('visibility', EnumType::class, [
-              'label' => 'content.visibility',
-              'class' => ContentVisibilityEnum::class,
-              'autocomplete' => true,
-              'required' => true,
-              'choice_label' => static fn (ContentVisibilityEnum $visibility): string => 'visibility.'.$visibility->value,
+                'label' => 'content.visibility',
+                'class' => ContentVisibilityEnum::class,
+                'autocomplete' => true,
+                'required' => true,
+                'choice_label' => static fn (ContentVisibilityEnum $visibility): string => 'visibility.'.$visibility->value,
             ])
             ->add('categories', EntityType::class, [
-              'label' => 'content.categories',
-              'class' => Category::class,
-              'choice_label' => 'name',
-              'translation_domain' => 'tables',
-              'multiple' => true,
-              'autocomplete' => true,
-              'required' => true,
-          ]);
+                'label' => 'content.categories',
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'translation_domain' => 'tables',
+                'multiple' => true,
+                'autocomplete' => true,
+                'required' => true,
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-          'data_class' => Content::class,
+            'data_class' => Content::class,
         ]);
     }
 }

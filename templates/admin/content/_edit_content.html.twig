@@ -4,6 +4,6 @@
 {% include "admin/content/_send_notification_email.html.twig" with { content } only %}
 
 <div class="flex w-full items-center justify-center gap-6">
-    {{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}
+    {{ component("button", { content: "common.back_to_list"|trans, class: "!bg-purple-500 hover:!bg-purple-500/80 transition-all", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}
     {% include "admin/content/_delete_form.html.twig" with { content } only %}
 </div>

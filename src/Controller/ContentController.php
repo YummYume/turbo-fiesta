@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Content;
+use App\Entity\User;
 use App\Enum\ColorTypeEnum;
 use App\Form\ContentType;
 use App\Manager\FlashManager;
@@ -32,37 +33,42 @@ final class ContentController extends AbstractController
     #[IsGranted(ContentVoter::CREATE, statusCode: 403)]
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        /** @var User */
+        /** @var User $user */
         $user = $this->getUser();
 
         $pagination = $paginator->paginate(
-            $this->contentRepository->createQueryBuilder('c')
-            ->setParameter('user', $user)
-            ->where('c.createdBy = :user'),
+            $this->contentRepository->queryAllCreatedBy($user),
             $request->query->getInt('page', 1),
             5
         );
 
         $config = [
-          'cols' => [
-              'title' => [
-                  'type' => 'text',
-                  'label' => 'content.title',
-                  'queryKey' => 'c.title',
-              ],
-              'published' => $this->getContentPublishedRowOptions(),
-              'actions' => [
-                  'accent' => [
-                      'route' => 'content_edit',
-                      'routeParams' => [
-                          'id' => static fn (Content $content): string => $content->getId()->toBase32(),
-                      ],
-                      'icon' => 'pencil',
-                  ],
-              ],
-          ],
-          'pagination' => $pagination,
-      ];
+            'cols' => [
+                'title' => [
+                    'type' => 'text',
+                    'label' => 'content.title',
+                    'queryKey' => 'c.title',
+                ],
+                'published' => $this->getContentPublishedRowOptions(),
+                'actions' => [
+                    'info' => [
+                        'route' => 'app_content_show',
+                        'routeParams' => [
+                            'slug' => static fn (Content $content): string => $content->getSlug(),
+                        ],
+                        'icon' => 'eye',
+                    ],
+                    'accent' => [
+                        'route' => 'content_edit',
+                        'routeParams' => [
+                            'id' => static fn (Content $content): string => $content->getId()->toBase32(),
+                        ],
+                        'icon' => 'pencil',
+                    ],
+                ],
+            ],
+            'pagination' => $pagination,
+        ];
 
         return $this->render('content/index.html.twig', ['config' => $config]);
     }
@@ -78,7 +84,7 @@ final class ContentController extends AbstractController
             if ($form->isValid()) {
                 $this->contentRepository->save($content, true);
 
-                $this->flashManager->flash('success', 'flash.new.success');
+                $this->flashManager->flash('success', 'flash.common.created', translationDomain: 'admin');
 
                 return $this->redirectToRoute('content_edit', [
                     'id' => $content->getId(),
@@ -120,7 +126,7 @@ final class ContentController extends AbstractController
             if ($form->isValid()) {
                 $this->contentRepository->save($content, true);
 
-                $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.common.updated');
+                $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.common.updated', translationDomain: 'admin');
             } else {
                 $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_form');
             }
@@ -152,7 +158,7 @@ final class ContentController extends AbstractController
         if ($this->isCsrfTokenValid('delete-'.$content->getId()->toBase32(), $request->request->get('_token'))) {
             $this->contentRepository->remove($content, true);
 
-            $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.common.deleted');
+            $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.common.deleted', translationDomain: 'admin');
         } else {
             $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_csrf');
         }
@@ -209,7 +215,7 @@ final class ContentController extends AbstractController
 
             $this->flashManager->flash(ColorTypeEnum::Success->value, $published ? 'flash.content.published' : 'flash.content.unpublished', [
                 'title' => $content->getTitle(),
-            ]);
+            ], 'admin');
         } else {
             $this->flashManager->flash(ColorTypeEnum::Error->value, 'flash.common.invalid_csrf');
         }

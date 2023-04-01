@@ -3,4 +3,4 @@
 ## Launching the project
 
 - Run `make start`
-- Go to `localhost`
+- Go to [http://localhost](http://localhost)

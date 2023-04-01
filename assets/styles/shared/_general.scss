@@ -2,15 +2,19 @@
     @apply bg-secondary-400 #{!important};
 }
 
-input:not([type="checkbox"]), input::placeholder, textarea, textarea::placeholder {
-    @apply text-neutral-500 dark:text-neutral-400 #{!important};
+input:not([type='checkbox']),
+input::placeholder,
+textarea,
+textarea::placeholder {
+    @apply text-neutral-900 dark:text-neutral-400 #{!important};
 }
 
-input:not([type="checkbox"]), textarea {
-    @apply bg-neutral-200 border-neutral-400 dark:border-neutral-500 dark:bg-neutral-700 #{!important};
+input:not([type='checkbox']),
+textarea {
+    @apply border-neutral-400 bg-neutral-200 dark:border-neutral-500 dark:bg-neutral-700 #{!important};
 
     &:disabled {
-        @apply bg-neutral-300 text-neutral-600 dark:bg-neutral-700 dark:border-neutral-600 #{!important};
+        @apply bg-neutral-300 text-neutral-600 dark:border-neutral-600 dark:bg-neutral-700 #{!important};
     }
 }
 

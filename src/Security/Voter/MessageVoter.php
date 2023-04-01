@@ -38,7 +38,7 @@ class MessageVoter extends Voter
     /**
      * @internal Only the message owner can dismiss it
      */
-    private function canDismiss(Message $subject, UserInterface $currentUser): bool
+    private function canDismiss(Message $subject, ?UserInterface $currentUser): bool
     {
         return $subject->getProfile()->getUser() === $currentUser;
     }
