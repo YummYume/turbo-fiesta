@@ -74,7 +74,7 @@
         </table>
     </div>
 
-    <div class="btn-group items-center justify-center">
+    <div class="flex gap-3 items-center justify-center">
         {{ component("button", { button: false, content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_category") }) }}
         {{ component("button", { button: false, content: "common.edit"|trans, class: "btn-outline", variant: "success", centered: false, ghost: true, href: path("admin_category_edit", { id: category.id.toBase32 }) }) }}
     </div>

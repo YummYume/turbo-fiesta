@@ -10,6 +10,7 @@ user.roles: Rôles
 user.description: Description
 user.picture: Image
 user.categories: Catégories
+user.categories.help: Les catégories auxquelles vous êtes abonné. Vous recevrez une notification pour chaque nouveau contenu publié avec l'une de ces catégories.
 user.role.role_super_admin: Super administrateur
 user.role.role_admin: Employé
 user.role.role_member: Membre
@@ -21,6 +22,15 @@ content.title: Titre
 content.published: Publié
 content.unpublished: Non publié
 content.categories: Catégories
+content.type: Type
+content.type.article: Article
+content.type.formation: Formation
+content.type.other: Contenu
+content.visibility: Visibilité
+content.visibility.role_user: Public
+content.visibility.role_member: Membre uniquement
+content.visibility.role_admin: Salarié uniquement
+content.notifications_sent: Notifications envoyées
 
 # Categories
 category.name: Nom

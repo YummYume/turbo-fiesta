@@ -167,7 +167,7 @@
                                             >
                                                 {{ component('icon', { icon: 'x-mark', class: 'h-5 w-5' }) }}
 
-                                                <span class="sr-only">Close modal</span>
+                                                <span class="sr-only">{{ 'common.close'|trans }}</span>
                                             </button>
                                         </div>
                                         <div>
@@ -205,16 +205,16 @@
                             >
                             </path>
                         </svg>
-                        <span class="sr-only">Close menu</span>
+                        <span class="sr-only">{{ 'common.close'|trans }}</span>
                     </button>
                     <h5 class="inline-flex items-center mb-4 text-base font-semibold text-neutral-500 uppercase dark:text-neutral-400">
-                        Menu
+                        {{ 'common.my_menu'|trans }}
                     </h5>
                     <ul class="space-y-2">
                         <li>
-                            <a href="#" class="flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-700 group">
+                            <a href="{{ path('app_homepage') }}" class="flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-700 group">
                                 <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 transition duration-75 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"></path><path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path></svg>
-                                <span class="flex-1 ml-3 whitespace-nowrap">Messages</span>
+                                <span class="flex-1 ml-3 whitespace-nowrap">{{ 'common.messages'|trans }}</span>
                                 <span class="inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full bg-secondary-100 dark:bg-secondary-200 text-neutral-900">
                                     6
                                 </span>
@@ -223,36 +223,46 @@
                     </ul>
                     <ul class="pt-5 mt-5 space-y-2 border-t border-neutral-400 dark:border-neutral-700">
                         <li>
-                            <a href="#" class="flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-neutral-100 group">
+                            <a href="{{ path('app_homepage') }}" class="flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-neutral-100 group">
                                 <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 transition duration-75 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
-                                <span class="ml-3">Docs</span>
+                                <span class="ml-3">{{ 'common.documentation'|trans }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-neutral-100 group">
+                            <a href="{{ path('app_homepage') }}" class="flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-neutral-100 group">
                                 <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 transition duration-75 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd"></path></svg>
-                                <span class="ml-3">Help</span>
+                                <span class="ml-3">{{ 'common.help'|trans }}</span>
                             </a>
                         </li>
                     </ul>
                     <div class="hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-neutral-100 dark:bg-neutral-800 z-20">
-                        {# Preferences #}
-                        <a href="#" class="inline-flex justify-center p-2 rounded cursor-pointer dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-600">
-                            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path></svg>
-                        </a>
+                        {% if app.user %}
+                            {# Preferences #}
+                            <div data-controller="tooltip">
+                                <a
+                                    href="{{ path('app_edit_profile') }}"
+                                    data-tooltip-target="trigger"
+                                    class="inline-flex justify-center p-2 rounded cursor-pointer dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-600"
+                                >
+                                    <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path></svg>
+                                </a>
 
-                        {# Settings #}
-                        <div data-controller="tooltip">
-                            <a
-                                class="inline-flex justify-center p-2 rounded cursor-pointer dark:text-neutral-400 dark:hover:text-neutral-100 hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-600"
-                                data-tooltip-target="trigger"
-                                href="#"
-                            >
-                                <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
-                            </a>
+                                {{ component('tooltip', { text: 'common.preferences'|trans }) }}
+                            </div>
 
-                            {{ component('tooltip', { text: 'Settings page' }) }}
-                        </div>
+                            {# Settings #}
+                            <div data-controller="tooltip">
+                                <a
+                                    href="{{ path('app_edit_profile') }}"
+                                    data-tooltip-target="trigger"
+                                    class="inline-flex justify-center p-2 rounded cursor-pointer dark:text-neutral-400 dark:hover:text-neutral-100 hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-600"
+                                >
+                                    <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
+                                </a>
+
+                                {{ component('tooltip', { text: 'common.settings'|trans }) }}
+                            </div>
+                        {% endif %}
 
                         {# Locale #}
                         {% include "common/_locale_switcher.html.twig" %}
@@ -290,7 +300,7 @@
                     <a href="{{ path('app_homepage') }}" class="flex justify-center items-center text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
                         <img class="h-20" src="{{ asset('logo.png') }}" alt="logo">
                     </a>
-                    <span class="text-sm sm:text-center">© 2023 <a href="#" class="hover:underline">Jaji™</a>. All Rights Reserved.</span>
+                    <span class="text-sm sm:text-center">© {{ 'now'|date('Y') }} <a href="{{ path('app_homepage') }}" class="hover:underline">{{ 'common.app_name'|trans }}™</a>. {{ 'common.all_rights_reserved'|trans }}</span>
                 </div>
             </footer>
         {% endblock %}

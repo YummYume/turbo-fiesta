@@ -1,6 +1,6 @@
 # Common
-common.app_name: AppName
-common.description: Bienvenue sur MyApp !
+common.app_name: Jaji
+common.description: Bienvenue sur Jaji !
 common.login: Connexion
 common.logout: Déconnexion
 common.register: Enregistrement
@@ -33,6 +33,13 @@ common.notifications: Notifications
 common.dismiss_notification: Ignorer la notification
 common.dismiss_all: Ignorer la totalité
 common.no_notification: Rien à signaler.
+common.all_rights_reserved: Tous droits réservés.
+common.settings: Paramètres
+common.preferences: Préférences
+common.my_menu: Mon menu
+common.messages: Messages
+common.documentation: Documentation
+common.help: Aide
 
 ## Icons
 icon.eye: Afficher
@@ -59,16 +66,16 @@ flash.delete_profile.success: Compte supprimé. Vous devriez recevoir un email s
 
 # Pages
 ## Homepage
-page.homepage.title: Page d'accueil
-page.homepage.description: Bienvenue sur MyApp ! La meilleure application jamais créée.
+page.homepage.title: Trouvez facilement le contenu dont vous avez besoin
+page.homepage.description: Bienvenue sur Jaji ! Trouvez le meilleur contenu ici.
 
 ## About Us
 page.about_us.title: À Propos
-page.about_us.description: Tout ce que vous devez savoir sur MyApp, de pourquoi il a été créé à pourquoi vous devriez l'utiliser.
+page.about_us.description: Tout ce que vous devez savoir sur Jaji, de pourquoi il a été créé à pourquoi vous devriez l'utiliser.
 
 ## Contact
 page.contact.title: Contact
-page.contact.description: Apprenez comment entrer en contact avec l'équipe MyApp ici.
+page.contact.description: Apprenez comment entrer en contact avec l'équipe Jaji ici.
 
 ## Cookie Policy
 page.cookie_policy.title: Politique de cookies
@@ -76,20 +83,20 @@ page.cookie_policy.description: Préoccupé par votre vie privée et pourquoi no
 
 ## Privacy Policy
 page.privacy_policy.title: Politique de confidentialité
-page.privacy_policy.description: Politique de confidentialité officielle de MyApp.
+page.privacy_policy.description: Politique de confidentialité officielle de Jaji.
 
 ## Terms of Use
 page.terms_of_use.title: Conditions d'utilisation
-page.terms_of_use.description: Conditions générales d'utilisation de MyApp.
+page.terms_of_use.description: Conditions générales d'utilisation de Jaji.
 
 ## Register
 page.register.title: Créer un compte
-page.register.description: Enregistrez un compte pour accéder à toutes les fonctionnalités de MyApp.
+page.register.description: Enregistrez un compte pour accéder à toutes les fonctionnalités de Jaji.
 page.register.agree_terms: J'accepte les conditions d'utilisation
 
 ## Login
 page.login.title: Connexion
-page.login.description: Connectez-vous avec votre compte à MyApp.
+page.login.description: Connectez-vous avec votre compte à Jaji.
 page.login.forgot_password: Mot de passe oublié ?
 page.login.remember_me: Se souvenir de moi
 page.login.no_account: Pas encore de compte ?
@@ -111,7 +118,7 @@ page.edit_profile.deletion_prompt: Je comprends les conséquences et je souhaite
 
 ## Show Profile
 page.show_profile.title: Profil de {username}
-page.show_profile.description: Le profil de {username} sur MyApp.
+page.show_profile.description: Le profil de {username} sur Jaji.
 
 ## Check email
 page.check_email.title: Réinitialiser mon mot de passe
@@ -134,7 +141,7 @@ page.reset_password.reset: Réinitialiser mon mot de passe
 
 ## Search
 page.search.title: Recherche
-page.search.description: Recherchez n'importe quoi sur MyApp.
+page.search.description: Recherchez n'importe quoi sur Jaji.
 page.search.no_result: Aucun résultat trouvé.
 page.search.result_time: >-
     { hits, plural, =0 {# résultat en { time } ms} one {# résultat en { time } ms} other {# résultats en { time } ms} }
