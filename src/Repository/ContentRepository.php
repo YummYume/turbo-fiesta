@@ -38,4 +38,14 @@ class ContentRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findAllPublishedContent(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.published = true')
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

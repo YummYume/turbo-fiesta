@@ -36,23 +36,30 @@ final class ContentController extends AbstractController
         );
 
         $config = [
-          'cols' => [
-              'title' => [
-                  'type' => 'text',
-                  'label' => 'content.title',
-                  'queryKey' => 'c.title',
-              ],
-              'published' => $this->getContentPublishedRowOptions(),
-              'actions' => [
-                  'accent' => [
-                      'route' => 'admin_content_edit',
-                      'routeParams' => [
-                          'id' => static fn (Content $content): string => $content->getId()->toBase32(),
-                      ],
-                      'icon' => 'pencil',
-                  ],
-              ],
-          ],
+            'cols' => [
+                'title' => [
+                    'type' => 'text',
+                    'label' => 'content.title',
+                    'queryKey' => 'c.title',
+                ],
+                'published' => $this->getContentPublishedRowOptions(),
+                'actions' => [
+                    'info' => [
+                        'route' => 'admin_content_show',
+                        'routeParams' => [
+                            'id' => static fn (Content $content): string => $content->getId()->toBase32(),
+                        ],
+                        'icon' => 'eye',
+                    ],
+                    'accent' => [
+                        'route' => 'admin_content_edit',
+                        'routeParams' => [
+                            'id' => static fn (Content $content): string => $content->getId()->toBase32(),
+                        ],
+                        'icon' => 'pencil',
+                    ],
+                ],
+            ],
           'pagination' => $pagination,
       ];
 
@@ -69,13 +76,13 @@ final class ContentController extends AbstractController
             if ($form->isValid()) {
                 $this->contentRepository->save($content, true);
 
-                $this->flashManager->flash('success', 'flash.new.success', translationDomain: 'admin');
+                $this->flashManager->flash('success', 'flash.common.created', translationDomain: 'admin');
 
                 return $this->redirectToRoute('admin_content_edit', [
                     'id' => $content->getId(),
                 ], Response::HTTP_SEE_OTHER);
             }
-            $this->flashManager->flash('error', 'flash.form.error', translationDomain: 'admin');
+            $this->flashManager->flash('error', 'flash.common.invalid_form');
 
             if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
                 $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
@@ -89,6 +96,14 @@ final class ContentController extends AbstractController
 
         return $this->render('admin/content/new.html.twig', [
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'admin_content_show', methods: ['GET'])]
+    public function show(Content $content): Response
+    {
+        return $this->render('admin/content/show.html.twig', [
+            'content' => $content,
         ]);
     }
 
@@ -147,7 +162,7 @@ final class ContentController extends AbstractController
             if ($content->isPublished()) {
                 $notifCount = $messageManager->createMessagesForContent($content, true);
 
-                $this->flashManager->flash(ColorTypeEnum::Success->value, 'flash.content.notification_email_sent', [
+                $this->flashManager->flash($notifCount > 0 ? ColorTypeEnum::Success->value : ColorTypeEnum::Info->value, 'flash.content.notification_email_sent', [
                     'notifCount' => $notifCount,
                 ], translationDomain: 'admin');
             } else {

@@ -30,6 +30,7 @@ final class ProfileType extends AbstractType
             ])
             ->add('categories', EntityType::class, [
                 'label' => 'user.categories',
+                'help' => 'user.categories.help',
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'translation_domain' => 'tables',

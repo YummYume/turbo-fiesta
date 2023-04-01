@@ -3,15 +3,11 @@
 {% trans_default_domain "admin" %}
 
 {% block title %}
-    {{ "page.user_show.title"|trans({ username: user.profile.username }) }}
-{% endblock %}
-
-{% block description %}
-    {{ "page.user_show.description"|trans({ username: user.profile.username }) }}
+    {{ content.title }}
 {% endblock %}
 
 {% block main_title %}
-    {{ "page.user_show.title"|trans({ username: user.profile.username }) }}
+    {{ content.title }}
 {% endblock %}
 
 {% block main_body %}
@@ -23,65 +19,57 @@
                         {{ "common.id"|trans }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ user.id }}
+                        {{ content.id }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {{ "user.email"|trans({}, "tables") }}
+                        {{ "content.title"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ user.email }}
+                        {{ content.title }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {{ "user.roles"|trans({}, "tables") }}
+                        {{ "content.published"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ user.roles ? user.roles|map(role => "user.role.#{role|lower}"|trans({}, "tables"))|join(", ") }}
+                        {{ ("common." ~ (content.published ? "yes" : "no"))|trans }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {{ "user.verified"|trans({}, "tables") }}
+                        {{ "content.type"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ ("common." ~ (user.verified ? "yes" : "no"))|trans }}
+                        {{ ("content.type.#{content.type.value}")|trans({}, 'tables') }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {{ "user.username"|trans({}, "tables") }}
+                        {{ "content.visibility"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ user.profile.username }}
+                        {{ ("content.visibility.#{content.visibility.value|lower}")|trans({}, 'tables') }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {{ "user.description"|trans({}, "tables") }}
+                        {{ "content.notifications_sent"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ user.profile.description }}
+                        {{ content.notifiedProfiles|length }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {{ "user.picture"|trans({}, "tables") }}
+                        {{ "content.categories"|trans({}, "tables") }}
                     </th>
                     <td class="px-6 py-4">
-                        <div class="w-fit">
-                            {{ component("avatar", { user, small: false }) }}
-                        </div>
-                    </td>
-                </tr>
-                <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
-                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        {{ "user.categories"|trans({}, "tables") }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ user.roles ? user.profile.categories|map(category => category.name)|join(", ") }}
+                        {% for category in content.categories %}
+                            <a href="{{ path('admin_category_show', { id: category.id.toBase32 }) }}">{{ category.name }}</a>{{ not loop.last ? ', ' }}
+                        {% endfor %}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
@@ -89,7 +77,7 @@
                         {{ "common.created_at"|trans }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ user.createdAt ? user.createdAt|format_datetime : "" }}
+                        {{ content.createdAt ? content.createdAt|format_datetime : "" }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
@@ -97,8 +85,7 @@
                         {{ "common.updated_at"|trans }}
                     </th>
                     <td class="px-6 py-4">
-                        {% set updatedAt = [user.updatedAt ?? null, user.profile.updatedAt ?? null, user.profile.picture.updatedAt ?? null]|sort|last %}
-                        {{ updatedAt ? updatedAt|format_datetime : "" }}
+                        {{ content.updatedAt ? content.updatedAt|format_datetime : "" }}
                     </td>
                 </tr>
                 <tr class="bg-neutral-100 border-b dark:bg-neutral-800 dark:border-neutral-700">
@@ -106,9 +93,9 @@
                         {{ "common.created_by"|trans }}
                     </th>
                     <td class="px-6 py-4">
-                        {% if user.createdBy %}
-                            <a href="{{ path("admin_user_show", { id: user.createdBy.id.toBase32 }) }}">
-                                {{ user.createdBy.profile.username }}
+                        {% if content.createdBy %}
+                            <a href="{{ path("admin_user_show", { id: content.createdBy.id.toBase32 }) }}">
+                                {{ content.createdBy.profile.username }}
                             </a>
                         {% endif %}
                     </td>
@@ -118,10 +105,9 @@
                         {{ "common.updated_by"|trans }}
                     </th>
                     <td class="px-6 py-4">
-                        {% set updatedBy = user.updatedAt ? (user.updatedBy ?? user.profile.updatedBy) : (user.profile.updatedAt ? user.profile.updatedBy : null) %}
-                        {% if updatedBy %}
-                            <a href="{{ path("admin_user_show", { id: updatedBy.id.toBase32 }) }}">
-                                {{ updatedBy.profile.username }}
+                        {% if content.updatedBy %}
+                            <a href="{{ path("admin_user_show", { id: content.updatedBy.id.toBase32 }) }}">
+                                {{ content.updatedBy.profile.username }}
                             </a>
                         {% endif %}
                     </td>
@@ -131,7 +117,7 @@
     </div>
 
     <div class="flex gap-3 items-center justify-center">
-        {{ component("button", { button: false, content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_user") }) }}
-        {{ component("button", { button: false, content: "common.edit"|trans, class: "btn-outline", variant: "success", centered: false, ghost: true, href: path("admin_user_edit", { id: user.id.toBase32 }) }) }}
+        {{ component("button", { button: false, content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}
+        {{ component("button", { button: false, content: "common.edit"|trans, class: "btn-outline", variant: "success", centered: false, ghost: true, href: path("admin_content_edit", { id: content.id.toBase32 }) }) }}
     </div>
 {% endblock %}

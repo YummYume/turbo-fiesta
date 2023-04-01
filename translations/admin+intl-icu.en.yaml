@@ -27,7 +27,7 @@ flash.common.deleted: Deleted successfully.
 
 ## Admin
 page.admin.title: Administration
-page.admin.description: The administration for MyApp
+page.admin.description: The administration for Jaji
 
 ## User
 flash.user.validation_email_sent: Validation email sent.
@@ -44,7 +44,7 @@ flash.content.not_published: This content isn't published.
 # Pages
 ## Homepage
 page.homepage.title: Administration homepage
-page.homepage.description: The homepage of the administration for MyApp.
+page.homepage.description: The homepage of the administration for Jaji.
 page.homepage.welcome: Welcome to the administration dashboard.
 
 ## User

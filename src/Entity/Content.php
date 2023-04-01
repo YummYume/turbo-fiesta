@@ -61,6 +61,9 @@ class Content
     #[ORM\OneToMany(mappedBy: 'content', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $messages;
 
+    #[ORM\Column]
+    private array $notifiedProfiles = [];
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -198,23 +201,36 @@ class Content
         return $this;
     }
 
-    public function getNotifiedProfiles(): array
-    {
-        $profiles = [];
-
-        /** @var Message $message */
-        foreach ($this->messages as $message) {
-            if (!\in_array($message->getProfile(), $profiles, true)) {
-                $profiles[] = $message->getProfile();
-            }
-        }
-
-        return $profiles;
-    }
-
     #[Groups('searchable')]
     public function isIndexable(): bool
     {
         return $this->published && ContentVisibilityEnum::Public === $this->visibility;
+    }
+
+    public function getNotifiedProfiles(): array
+    {
+        return $this->notifiedProfiles;
+    }
+
+    public function addNotifiedProfile(Profile|Uuid $profile): self
+    {
+        $uid = $profile;
+
+        if ($profile instanceof Profile) {
+            $uid = $profile->getId();
+        }
+
+        if (!\in_array($uid, $this->notifiedProfiles, true)) {
+            $this->notifiedProfiles[] = $uid->toBase32();
+        }
+
+        return $this;
+    }
+
+    public function setNotifiedProfiles(array $notifiedProfiles): self
+    {
+        $this->notifiedProfiles = $notifiedProfiles;
+
+        return $this;
     }
 }

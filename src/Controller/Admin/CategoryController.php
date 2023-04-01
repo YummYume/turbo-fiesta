@@ -74,13 +74,13 @@ final class CategoryController extends AbstractController
             if ($form->isValid()) {
                 $this->categoryRepository->save($category, true);
 
-                $this->flashManager->flash('success', 'flash.new.success', translationDomain: 'admin');
+                $this->flashManager->flash('success', 'flash.common.created', translationDomain: 'admin');
 
                 return $this->redirectToRoute('admin_category_edit', [
                     'id' => $category->getId(),
                 ], Response::HTTP_SEE_OTHER);
             }
-            $this->flashManager->flash('error', 'flash.form.error', translationDomain: 'admin');
+            $this->flashManager->flash('error', 'flash.common.invalid_form');
 
             if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
                 $request->setRequestFormat(TurboBundle::STREAM_FORMAT);

@@ -1,5 +1,5 @@
 {% block create %}
-    {% if app.user %}
+    {% if app.user and app.user == entity.profile.user %}
         <turbo-stream action="append" target="profile-{{ app.user.profile.id }}-unread">
             <template>
                 {% include "icon/notification_unread.html.twig" only %}
@@ -11,20 +11,26 @@
                 {{ component("message", { message: entity }) }}
             </template>
         </turbo-stream>
+
+        <turbo-stream action="remove" target="profile-{{ app.user.profile.id }}-no-message"></turbo-stream>
     {% endif %}
 {% endblock %}
 
 {% block update %}
     {% if app.user and not app.user.profile.hasUnreadMessage %}
-        <turbo-stream action="remove" target="profile-{{ app.user.profile.id }}-unread"></turbo-stream>
+        <turbo-stream action="update" target="profile-{{ app.user.profile.id }}-unread">
+            <template></template>
+        </turbo-stream>
     {% endif %}
 {% endblock %}
 
 {% block remove %}
-    {% if entity.profile.messages is empty %}
+    {% if app.user and entity.profile.messages is empty %}
         <turbo-stream action="replace" target="message-{{ id }}">
             <template>
-                <span class="text-center text-sm mt-2 text-neutral-600 dark:text-neutral-400">{{ 'common.no_notification'|trans }}</span>
+                <span id="profile-{{ app.user.profile.id }}-no-message" class="text-center text-sm mt-2 text-neutral-600 dark:text-neutral-400">
+                    {{ 'common.no_notification'|trans }}
+                </span>
             </template>
         </turbo-stream>
     {% else %}

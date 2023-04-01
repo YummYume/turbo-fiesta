@@ -1,11 +1,11 @@
 {% trans_default_domain "messages" %}
 
-<div
-    data-controller="dropdown symfony--ux-turbo--mercure-turbo-stream submit"
-    {{ turbo_stream_listen('App\\Entity\\Message') }}
-    data-action="dropdown:dropdown:show->submit#submit"
->
-    {% if app.user %}
+{% if app.user %}
+    <div
+        data-controller="dropdown symfony--ux-turbo--mercure-turbo-stream submit"
+        {{ turbo_stream_listen('App\\Entity\\Message') }}
+        data-action="dropdown:dropdown:show->submit#submit"
+    >
         <form action="{{ path('app_message_read_all') }}" method="post" data-submit-target="form">
             <input type="hidden" name="_token" value="{{ csrf_token('read-all-' ~ app.user.id) }}" />
         </form>
@@ -14,7 +14,7 @@
             data-dropdown-target="trigger"
             type="button"
         >
-            <span class="sr-only">{{ 'common.view_notifications' }}</span>
+            <span class="sr-only">{{ 'common.view_notifications'|trans }}</span>
             <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
             <div id="profile-{{ app.user.profile.id }}-unread" class="absolute top-0 right-1">
                 {% if app.user.profile.hasUnreadMessage %}
@@ -37,9 +37,11 @@
                 {% for message in app.user.profile.messages %}
                     {{ component("message", { message }) }}
                 {% else %}
-                    <span class="text-center text-sm mt-2 text-neutral-600 dark:text-neutral-400">{{ 'common.no_notification'|trans }}</span>
+                    <span id="profile-{{ app.user.profile.id }}-no-message" class="text-center text-sm mt-2 text-neutral-600 dark:text-neutral-400">
+                        {{ 'common.no_notification'|trans }}
+                    </span>
                 {% endfor %}
             </div>
         </div>
-    {% endif %}
-</div>
+    </div>
+{% endif %}
