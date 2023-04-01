@@ -13,12 +13,12 @@
 {% endblock %}
 
 {% block main_body %}
-    <section class="flex grow items-center justify-center gap-8">
-        {% if not app.user %}
+    {% if not app.user %}
+        <section class="flex grow items-center justify-center gap-8">
             <a href="{{ path("security_login") }}">{{ component("button", { content: "page.login.title"|trans }) }}</a>
             <a href="{{ path("app_register") }}">{{ component("button", { content: "common.register"|trans }) }}</a>
-        {% endif %}
-    </section>
+        </section>
+    {% endif %}
 
     <section class="flex flex-col gap-2">
         {% for content in contents %}

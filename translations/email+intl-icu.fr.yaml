@@ -25,3 +25,8 @@ account_deletion.subject: Suppression de votre compte
 account_deletion.title: Votre compte a été supprimé
 account_deletion.description: Nous confirmons la suppression de votre compte sur Jaji.
 account_deletion.main_text: Bonjour, {username}. Nous sommes désolés de vous voir partir et confirmons la suppression de votre compte sur Jaji, ainsi que de toutes les informations associées.
+
+# New content
+new_content.subject: Nouveau contenu publié sur Jaji
+new_content_email.title: Nouveau contenu publié sur Jaji
+new_content_email.description: Il y a du nouveau contenu qui pourrait vous intéresser sur Jaji.

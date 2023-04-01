@@ -35,7 +35,7 @@ final class UserFixtures extends Fixture implements DependentFixtureInterface
             ->addCategory($this->getReference(CategoryFixtures::REFERENCE_IDENTIFIER.(\count(CategoryFixtures::FIXTURE_DATA) - 1)))
         ;
         $admin = (new User())
-            ->setEmail('root@root.com')
+            ->setEmail('root@jaji.com')
             ->setPlainPassword('root')
             ->setVerified(true)
             ->setRoles([UserRoleEnum::SuperAdmin->value, UserRoleEnum::AllowedToSwitch->value])
@@ -44,6 +44,36 @@ final class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->persist($admin);
         $this->addReference(self::REFERENCE_IDENTIFIER.'root', $admin);
+
+        $memberProfile = (new Profile())
+            ->setUsername('Member')
+            ->addCategory($this->getReference(CategoryFixtures::REFERENCE_IDENTIFIER.(\count(CategoryFixtures::FIXTURE_DATA) - 1)))
+        ;
+        $member = (new User())
+            ->setEmail('member@jaji.com')
+            ->setPlainPassword('member')
+            ->setVerified(true)
+            ->setRoles([UserRoleEnum::Member->value])
+            ->setProfile($memberProfile)
+        ;
+
+        $manager->persist($member);
+        $this->addReference(self::REFERENCE_IDENTIFIER.'member', $member);
+
+        $employeeProfile = (new Profile())
+            ->setUsername('Employee')
+            ->addCategory($this->getReference(CategoryFixtures::REFERENCE_IDENTIFIER.(\count(CategoryFixtures::FIXTURE_DATA) - 1)))
+        ;
+        $employee = (new User())
+            ->setEmail('employee@jaji.com')
+            ->setPlainPassword('employee')
+            ->setVerified(true)
+            ->setRoles([UserRoleEnum::Admin->value])
+            ->setProfile($employeeProfile)
+        ;
+
+        $manager->persist($employee);
+        $this->addReference(self::REFERENCE_IDENTIFIER.'employee', $employee);
 
         foreach (range(1, self::FIXTURE_RANGE) as $i) {
             $profile = (new Profile())
