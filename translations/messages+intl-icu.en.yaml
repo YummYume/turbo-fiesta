@@ -68,7 +68,6 @@ flash.content.notification_email_sent: >-
         other {# notifications sent.}
     }
 flash.content.not_published: This content isn't published.
-
 ## Register email
 flash.register.email_sent: Thank you for registering. We sent you an email to verify your account.
 flash.register.link_expired: This link has expired. A new one is on the way to your email address!
@@ -169,7 +168,6 @@ page.search.type_to_search: Type anything to start searching.
 page.search.search_username: For example, try to type in { username }...
 
 ## Content
-
 
 ## Content
 ### Show
@@ -296,4 +294,4 @@ form.editor.tools.quote.config.caption_placeholder: "Quote's author"
 
 ### Other
 form.editor.placeholder: Tell us your best stories...
-icon.add_circle: add_circle.svg
+icon.add_circle: Add
