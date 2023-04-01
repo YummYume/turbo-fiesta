@@ -15,7 +15,7 @@
         {% include "admin/category/_form.html.twig" %}
 
         <div class="flex w-full items-center justify-center gap-6">
-            {{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_category") }) }}
+            {{ component("button", { content: "common.back_to_list"|trans, class: "!bg-purple-500 hover:!bg-purple-500/80 transition-all", variant: "info", centered: false, ghost: true, href: path("admin_category") }) }}
         </div>
     </div>
 {% endblock %}

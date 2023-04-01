@@ -2,4 +2,4 @@
 
 {% include "admin/content/_form.html.twig" with { form, button_label: "common.create"|trans, notificationEmailDisabled: false, editing: false } only %}
 
-{{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}
+{{ component("button", { content: "common.back_to_list"|trans, class: "!bg-purple-500 hover:!bg-purple-500/80 transition-all", variant: "info", centered: false, ghost: true, href: path("admin_content") }) }}

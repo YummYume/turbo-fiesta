@@ -6,9 +6,8 @@
         title: "page.category_delete.title"|trans,
         modalId: "delete-category-modal",
         openButtonText: "common.delete"|trans,
-        openButtonClass: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+        openButtonClass: "!bg-danger hover:!bg-danger/80 transition-all",
         closeButtonText: "common.go_back"|trans,
-        closeButtonClass: "focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
     }
 %}
     {% trans_default_domain "admin" %}
@@ -19,7 +18,7 @@
 
     {% block modal_action %}
         {{ parent() }}
-        {{ component("button", { id: "delete-category", content: "common.delete"|trans, submit: true, class: "bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" }) }}
+        {{ component("button", { id: "delete-category", content: "common.delete"|trans, submit: true, class: "!bg-danger hover:!bg-danger/80 transition-all" }) }}
     {% endblock %}
 
     {% block modal_box %}

@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Content;
 use App\Enum\ColorTypeEnum;
-use App\Form\Admin\BlockType;
+use App\Form\ContentType;
 use App\Manager\FlashManager;
 use App\Manager\MessageManager;
 use App\Repository\ContentRepository;
@@ -70,7 +70,7 @@ final class ContentController extends AbstractController
     public function new(Request $request): Response
     {
         $content = new Content();
-        $form = $this->createForm(BlockType::class, $content)->handleRequest($request);
+        $form = $this->createForm(ContentType::class, $content)->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -110,7 +110,7 @@ final class ContentController extends AbstractController
     #[Route('/edit/{id}', name: 'admin_content_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Content $content): Response
     {
-        $form = $this->createForm(BlockType::class, $content)->handleRequest($request);
+        $form = $this->createForm(ContentType::class, $content)->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -126,7 +126,7 @@ final class ContentController extends AbstractController
 
                 return $this->render('admin/content/stream/edit.stream.html.twig', [
                     'content' => $content,
-                    'form' => $form->isValid() ? $this->createForm(BlockType::class, $content) : $form,
+                    'form' => $form->isValid() ? $this->createForm(ContentType::class, $content) : $form,
                 ]);
             } elseif ($form->isValid()) {
                 return $this->redirectToRoute('admin_content_edit', [
@@ -180,7 +180,7 @@ final class ContentController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('admin_user_edit', [
+        return $this->redirectToRoute('admin_content_edit', [
             'id' => $content->getId()->toBase32(),
         ], Response::HTTP_SEE_OTHER);
     }

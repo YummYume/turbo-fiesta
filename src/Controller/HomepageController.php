@@ -15,7 +15,7 @@ final class HomepageController extends AbstractController
     public function index(ContentRepository $contentRepository): Response
     {
         $contents = array_filter(
-            $contentRepository->findAllPublishedContent(),
+            $contentRepository->findAllPublishedContent($this->getUser()),
             fn (Content $content): bool => $this->isGranted(ContentVoter::VIEW, $content)
         );
 

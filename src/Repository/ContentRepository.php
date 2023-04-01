@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Content;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,13 +41,33 @@ class ContentRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAllPublishedContent(): array
+    public function findAllPublishedContent(?User $user = null): array
     {
-        return $this->createQueryBuilder('c')
-            ->where('c.published = true')
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.published = :published')
+            ->setParameter(':published', true)
             ->orderBy('c.createdAt', 'DESC')
+        ;
+
+        if (null !== $user) {
+            $qb
+                ->orWhere('c.createdBy = :user')
+                ->setParameter('user', $user->getId(), 'uuid')
+            ;
+        }
+
+        return $qb
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    public function queryAllCreatedBy(User $createdBy): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.createdBy = :user')
+            ->setParameter('user', $createdBy->getId(), 'uuid')
+            ->orderBy('c.createdAt', 'DESC')
         ;
     }
 }

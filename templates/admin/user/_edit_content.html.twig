@@ -4,7 +4,7 @@
 {% include "admin/user/_send_validation_email.html.twig" with { user } only %}
 
 <div class="flex w-full items-center justify-center gap-6">
-    {{ component("button", { content: "common.back_to_list"|trans, class: "btn-outline", variant: "info", centered: false, ghost: true, href: path("admin_user") }) }}
+    {{ component("button", { content: "common.back_to_list"|trans, class: "!bg-purple-500 hover:!bg-purple-500/80 transition-all", variant: "info", centered: false, ghost: true, href: path("admin_user") }) }}
     {% if is_granted(constant("App\\Security\\Voter\\UserVoter::DELETE"), user) %}
         {% include "admin/user/_delete_form.html.twig" with { user } only %}
     {% endif %}

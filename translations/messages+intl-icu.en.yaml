@@ -1,6 +1,11 @@
 # Common
 common.app_name: Jaji
 common.description: Welcome to Jaji!
+common.create: Create
+common.delete: Delete
+common.edit: Edit
+common.back_to_list: Back to list
+common.go_back: Go back
 common.login: Sign in
 common.logout: Logout
 common.register: Register
@@ -40,6 +45,8 @@ common.my_menu: My menu
 common.messages: Messages
 common.documentation: Documentation
 common.help: Help
+common.content.create: Create content
+common.delete.cannot_be_undone: This cannot be undone.
 
 # Icons
 icon.eye: Show
@@ -47,9 +54,20 @@ icon.pencil: Edit
 
 # Flashes
 ## Common
+flash.common.created: Created successfully.
+flash.common.updated: Updated successfully.
+flash.common.deleted: Deleted successfully.
 flash.common.invalid_form: Invalid form. Please try again.
 flash.common.invalid_csrf: Invalid CSRF token. Please try again.
 
+## Content email
+flash.content.notification_email_sent: >-
+    {notifCount, plural,
+        =0 {No notification sent.}
+        one {1 notification sent.}
+        other {# notifications sent.}
+    }
+flash.content.not_published: This content isn't published.
 ## Register email
 flash.register.email_sent: Thank you for registering. We sent you an email to verify your account.
 flash.register.link_expired: This link has expired. A new one is on the way to your email address!
@@ -150,7 +168,26 @@ page.search.type_to_search: Type anything to start searching.
 page.search.search_username: For example, try to type in { username }...
 
 ## Content
+
+## Content
+### Show
 page.show_content.description: '{ title } : everything you need to know.'
+
+### List
+page.content.title: Contents
+page.content.description: List of contents created on the website.
+
+### New
+page.content_new.title: New content
+
+### Edit
+page.content_edit.title: Edit content
+page.content_edit.description: Edit a content's information.
+page.content_edit.send_notification_email: Send notifications
+
+### Delete
+page.content_delete.title: Delete content
+page.content_delete.content: Are you sure you want to delete this content?
 
 # Entities
 ## User
@@ -192,6 +229,16 @@ content.type.formation: Formation
 content.type.other: Content
 content.published: Published
 content.visibility: Visibility
+
+## Type
+type.article: Article
+type.formation: Formation
+type.other: Other
+
+## Visibility
+visibility.ROLE_ADMIN: Employe
+visibility.ROLE_MEMBER: Customer
+visibility.ROLE_USER: Public
 
 ## Category
 category.name: Name
@@ -247,3 +294,4 @@ form.editor.tools.quote.config.caption_placeholder: "Quote's author"
 
 ### Other
 form.editor.placeholder: Tell us your best stories...
+icon.add_circle: Add

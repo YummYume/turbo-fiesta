@@ -1,0 +1,3 @@
+<form id="content-send-notification-email-form" method="post" action="{{ path("content_send_notification", { id: content.id.toBase32 }) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token("publish-" ~ content.id.toBase32) }}" />
+</form>

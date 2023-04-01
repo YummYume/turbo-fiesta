@@ -39,6 +39,7 @@ flash.content.notification_email_sent: >-
         =0 {No notification sent.}
         one {1 notification sent.}
         other {# notifications sent.}
+    }
 flash.content.not_published: This content isn't published.
 # Pages
 ## Homepage

@@ -1,5 +1,3 @@
-{% trans_default_domain "admin" %}
-
 {% component modal
     with
     {
@@ -10,10 +8,8 @@
         closeButtonText: "common.go_back"|trans,
     }
 %}
-    {% trans_default_domain "admin" %}
-
     {% block content %}
-        {{ "page.content_delete.content"|trans }} <strong class="text-danger">{{ "common.delete.cannot_be_undone"|trans }}</strong>
+        {{ "page.content_delete.content"|trans }} <strong class="text-red-600">{{ "common.delete.cannot_be_undone"|trans }}</strong>
     {% endblock %}
 
     {% block modal_action %}
@@ -22,7 +18,7 @@
     {% endblock %}
 
     {% block modal_box %}
-        <form method="post" action="{{ path("admin_content_delete", { id: content.id.toBase32 }) }}">
+        <form method="post" action="{{ path("content_delete", { id: content.id.toBase32 }) }}">
             <input type="hidden" name="_token" value="{{ csrf_token("delete-" ~ content.id.toBase32) }}" />
             {{ parent() }}
         </form>

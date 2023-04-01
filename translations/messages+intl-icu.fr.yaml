@@ -1,6 +1,11 @@
 # Common
 common.app_name: Jaji
 common.description: Bienvenue sur Jaji !
+common.create: Créer
+common.delete: Supprimer
+common.edit: Modifier
+common.back_to_list: Retour à la liste
+common.go_back: Retour en arrière
 common.login: Connexion
 common.logout: Déconnexion
 common.register: Enregistrement
@@ -40,6 +45,8 @@ common.my_menu: Mon menu
 common.messages: Messages
 common.documentation: Documentation
 common.help: Aide
+common.content.create: Créer du contenu
+common.delete.cannot_be_undone: Cette action est irréversible.
 
 ## Icons
 icon.eye: Afficher
@@ -47,9 +54,20 @@ icon.pencil: Modifier
 
 # Flashes
 ## Common
+flash.common.created: Crée avec succés.
+flash.common.updated: Mis à jour avec succés.
+flash.common.deleted: Supprimé avec succès.
 flash.common.invalid_form: Formulaire non valide. Veuillez réessayer.
 flash.common.invalid_csrf: Jeton CSRF non valide. Veuillez réessayer.
 
+## Content email
+flash.content.notification_email_sent: >-
+    {notifCount, plural,
+        =0 {Aucune notification envoyée.}
+        one {1 notification envoyée.}
+        other {# notifications envoyées.}
+    }
+flash.content.not_published: Ce contenu n'est pas publié.
 ## Register email
 flash.register.email_sent: Merci de vous être enregistré. Nous vous avons envoyé un email pour vérifier votre compte.
 flash.register.link_expired: Ce lien a expiré. Un nouveau est en route vers votre adresse email !
@@ -150,7 +168,24 @@ page.search.type_to_search: Tapez n'importe quoi pour commencer la recherche.
 page.search.search_username: Par exemple, essayez de saisir { username }...
 
 ## Content
+### Show
 page.show_content.description: '{ title } : tout ce que vous avez besoin de savoir.'
+
+### List
+page.content.title: Contenus
+page.content.description: Liste des contenus crée sur le site.
+
+### New
+page.content_new.title: Nouveau contenu
+
+### Edit
+page.content_edit.title: Modifier le contenu
+page.content_edit.description: Modifier les informations du contenu.
+page.content_edit.send_notification_email: Envoyer les notifications
+
+### Delete
+page.content_delete.title: Supprmier le contenu
+page.content_delete.content: Voulez-vous vraiment supprimer ce contenu?
 
 # Entities
 ## User
@@ -192,6 +227,16 @@ content.type.formation: Formation
 content.type.other: Contenu
 content.published: Publié
 content.visibility: Visibilité
+
+## Type
+type.article: Article
+type.formation: Formation
+type.other: Autre
+
+## Visibility
+visibility.ROLE_ADMIN: Employé
+visibility.ROLE_MEMBER: Adhérent
+visibility.ROLE_USER: Public
 
 ## Category
 category.name: Nom
@@ -247,3 +292,4 @@ form.editor.tools.quote.config.caption_placeholder: Auteur de la citation
 
 ### Other
 form.editor.placeholder: Racontez-nous vos meilleures histoires...
+icon.add_circle: Ajouter

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import Delimiter from '@editorjs/delimiter';
 import EditorJS, { type EditorConfig } from '@editorjs/editorjs';
+import Embed from '@editorjs/embed';
 import Header from '@editorjs/header';
 import NestedList from '@editorjs/nested-list';
 import Paragraph from '@editorjs/paragraph';
@@ -119,6 +120,7 @@ export default class EditorController extends Controller<HTMLElement> {
       holder: this.hasEditorTarget ? this.editorTarget : this.element,
       tools: {
         textVariant: TextVariantTune,
+        embed: Embed,
         Color: {
           class: ColorPlugin,
           config: {

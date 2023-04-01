@@ -1,7 +1,16 @@
 {% extends "email/layout.html.twig" %}
 
+{% set title = "new_content_email.title"|trans({}, "email", locale) %}
+{% set description = "new_content_email.description"|trans({}, "email", locale) %}
+{% set button_link = url('app_content_show', { slug: content.slug, _locale: locale|default("en") }) %}
+{% set button_text = 'component.notification.read'|trans({ type: content.type.value }) %}
+
 {% block main %}
-    <p>
-      bob
-    </p>
+    <div class="flex py-5 px-5 border-b hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:border-neutral-600">
+        <div class="w-full relative">
+            <p class="font-normal text-sm mb-1.5 dark:text-neutral-400">
+                {{ 'component.notification.new_content_available'|trans({ type: content.type.value }) }} <strong>{{ content.title|u.truncate(50, '...') }}</strong>
+            </p>
+        </div>
+    </div>
 {% endblock %}

@@ -13,15 +13,22 @@
 {% endblock %}
 
 {% block main_body %}
-    <section class="flex flex-col gap-8 mx-auto">
-        {% if content.createdBy %}
-            <a href="{{ path('app_profile_show', { slug: content.createdBy.profile.slug }) }}" class="flex items-center gap-2">
-                <div>
-                    {{ component("avatar", { user: content.createdBy }) }}
-                </div>
+    <section class="flex flex-col gap-8 w-[40.625rem] max-w-full mx-auto">
+        {% if content.createdBy or content.createdAt or content.updatedAt %}
+            <div class="flex sm:flex-row flex-col gap-2 items-center">
+                {% if content.createdBy %}
+                    <a href="{{ path('app_profile_show', { slug: content.createdBy.profile.slug }) }}" class="flex items-center gap-2 flex-grow">
+                        <div>
+                            {{ component("avatar", { user: content.createdBy }) }}
+                        </div>
 
-                {{ content.createdBy.profile.username }}
-            </a>
+                        {{ content.createdBy.profile.username }}
+                    </a>
+                {% endif %}
+                {% if content.createdAt or content.updatedAt %}
+                    <span class="text-sm">{{ (content.updatedAt ?? content.createdAt)|format_datetime }}</span>
+                {% endif %}
+            </div>
         {% endif %}
 
         <div class="flex gap-2">
@@ -36,7 +43,9 @@
             {% endfor %}
         </div>
         <div {{ stimulus_controller("editor-parser") }} data-editor-parser-data-value="{{ content.blocks|json_encode }}">
-            <div class="cdx-loader min-h-[300px]" data-editor-parser-target="loading"></div>
+            <div class="min-h-[300px] flex items-center justify-center" data-editor-parser-target="loading">
+                {{ component('icon', { icon: 'loading', class: 'h-8 w-8' }) }}
+            </div>
             <div class="prose" data-editor-parser-target="content"></div>
         </div>
     </section>
